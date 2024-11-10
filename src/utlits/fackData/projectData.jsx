@@ -3,6 +3,8 @@ import work_2 from "../../assets/images/projects/work2.jpg"
 import work_3 from "../../assets/images/projects/work3.jpg"
 import work_4 from "../../assets/images/projects/work4.jpg"
 
+// `../../assets/images/projects/${id}/imaghe.jpg`
+
 export const projectsData = [
     {
         id: 1,
@@ -20,7 +22,7 @@ export const projectsData = [
     {
         id: 2,
         src: work_2,
-        category: "Design",
+        category: "Cars",
         title: "Tesla car design",
         bname: "Tesla: Redefining modern cars",
         year: "2069",
