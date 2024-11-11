@@ -31,35 +31,4 @@ export const projectsData = [
         project: "Creative",
         description: "Elon came to me and said I want my cars to look futuristic so I made the CyberTruck."
     },
-    {
-        id: 3,
-        src: work_3,
-        category: "Branding",
-        title: "Brand Identity and Motion Design",
-    },
-    {
-        id: 4,
-        src: work_3,
-        category: "Branding",
-        title: "Brand Identity and Motion Design",
-    },
-    {
-        id: 5,
-        src: work_4,
-        category: "Marketing",
-        title: "Mobile Application Design",
-    },
-    {
-        id: 6,
-        src: work_3,
-        category: "Design",
-        title: "Brand Identity and Motion Design",
-    },
-    {
-        id: 7,
-        src: work_1,
-        category: "Marketing",
-        title: "Brand Identity and Motion Design"
-    },
-
 ]
