@@ -54,7 +54,7 @@ const Portfolio = ({ className }) => {
                         </ul>
                     </SlideUp>
                     <div className="row project-masonry-active overflow-hidden">
-                        {filteredProjects.map(({ category, id, src, title }) => <Card key={id} id={id} category={category} src={src} title={title} animationClass={animationClass} />)}
+                        {filteredProjects.map(({ category, id, src, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
 
                     </div>
                 </div>

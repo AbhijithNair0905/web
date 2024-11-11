@@ -22,8 +22,8 @@ export const projectsData = [
     {
         id: 2,
         src: work_2,
-        category: "Cars",
-        title: "Tesla car design",
+        category: "Design",
+        title: "Poetry and Pottery",
         bname: "Tesla: Redefining modern cars",
         year: "2069",
         client: "Elon Musk",
