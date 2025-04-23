@@ -1,9 +1,3 @@
-// import React from "react";
-// import singleProjectImg from "../assets/images/projects/single-project.jpg";
-// import singleProject1 from "../assets/images/projects/single-project1.jpg";
-// import singleProject2 from "../assets/images/projects/single-project2.jpg";
-// import singleProject3 from "../assets/images/projects/single-project3.jpg";
-// import singleProject4 from "../assets/images/projects/single-project4.jpg";
 import { useParams } from "react-router";
 import { projectsData } from "../utlits/fackData/projectData";
 

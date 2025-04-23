@@ -1663,6 +1663,11 @@ ul.extra-skills li i {
     padding-top: 200px;
 }
 
+.single-project-banner {
+    display: flex;
+    justify-content: center;
+}
+
 .single-project-image img {
     width: 100%;
 }
@@ -1671,8 +1676,23 @@ ul.extra-skills li i {
     font-size: 20px;
 }
 .single-image{
+    width: 100%;
     margin-bottom: 30px;
 }
+.single-video video {
+    width: 100%;
+    height: auto;
+    display: block; /* matches the border-radius from other containers */
+    object-fit: cover; /* nicely fills the box */
+    max-height: 543px;
+}
+
+/* Ensures the video container behaves like the image container */
+.single-video {
+    margin-bottom: 30px;
+    display: block;
+}
+
 .single-info {
     padding-bottom: 30px;
 }
@@ -2768,7 +2788,8 @@ ul.blog_pagination li a:hover {
 }
 
 .single-side-bar ul li a:hover {
-    color: #fff opacity: 1;
+    color: #fff; 
+    opacity: 1;
 }
 
 .single-blog-social-icon {

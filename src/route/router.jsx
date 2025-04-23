@@ -8,6 +8,10 @@ import SingleProject from "../pages/single-project";
 import SingleProjectA from "../pages/single-project copy 3";
 import Works from "../pages/works";
 import SingleProjectTemplate from "../pages/single-project-template";
+import Project1 from "../pages/projects/project1";
+import Project2 from "../pages/projects/project2";
+import Project3 from "../pages/projects/project3";
+import Project4 from "../pages/projects/project4";
 
 
 export const router = createBrowserRouter([
@@ -36,8 +40,20 @@ export const router = createBrowserRouter([
                 element: <SingleProject />
             },
             {
-                path: "/project/:id",
-                element: <SingleProjectTemplate />
+                path: "/project/1",
+                element: <Project1 />
+            },
+            {
+                path: "/project/2",
+                element: <Project2 />
+            },
+            {
+                path: "/project/3",
+                element: <Project3 />
+            },
+            {
+                path: "/project/4",
+                element: <Project4 />
             },
             {
                 path: "/works",
