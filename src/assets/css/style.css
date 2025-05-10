@@ -698,11 +698,12 @@ html {
 .slider-arrows button:last-child {}
 
 /*** swiper Dots ***/
-.swiper-pagination{
+.swiper-pagination {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 .swiper-pagination-bullet {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1385,10 +1386,10 @@ html {
 .scroller[data-animated="true"] {
     overflow: hidden;
     -webkit-mask: linear-gradient(90deg,
-        transparent,
-        white 20%,
-        white 80%,
-        transparent);
+            transparent,
+            white 20%,
+            white 80%,
+            transparent);
     mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
 
@@ -1675,15 +1676,27 @@ ul.extra-skills li i {
 .single-info h3 {
     font-size: 20px;
 }
-.single-image{
+
+.single-image {
     width: 100%;
     margin-bottom: 30px;
+    overflow: hidden;
 }
+
+.single-image img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+}
+
 .single-video video {
     width: 100%;
     height: auto;
-    display: block; /* matches the border-radius from other containers */
-    object-fit: cover; /* nicely fills the box */
+    display: block;
+    /* matches the border-radius from other containers */
+    object-fit: cover;
+    /* nicely fills the box */
     max-height: 543px;
 }
 
@@ -1696,7 +1709,8 @@ ul.extra-skills li i {
 .single-info {
     padding-bottom: 30px;
 }
-.single-info:last-child{
+
+.single-info:last-child {
     padding-bottom: 0px;
 }
 
@@ -1706,6 +1720,14 @@ ul.extra-skills li i {
 
 .project-image {
     margin-bottom: 45px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
 }
 
 .single-project-item {
@@ -1961,43 +1983,46 @@ ul.extra-skills li i {
 
 @keyframes slideIn {
     from {
-      transform: translatey(150px);
+        transform: translatey(150px);
     }
-    to {
-      transform: translatey(0);
-    }
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes scaleUp {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-  
 
-  .slideIn {
+    to {
+        transform: translatey(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+.slideIn {
     animation: slideIn 1s forwards;
-  }
-  
-  .fadeIn {
+}
+
+.fadeIn {
     animation: fadeIn 1s forwards;
-  }
-  
-  .scaleUp {
+}
+
+.scaleUp {
     animation: scaleUp 1s forwards;
-  }
+}
 
 
 /*
@@ -2385,16 +2410,19 @@ ul.extra-skills li i {
     box-shadow: rgba(255, 255, 255, 0.025) 0px 0.362176px 0.651917px -1px inset, rgba(255, 255, 255, 0.036) 0px 3px 5.4px -2px inset;
     background-color: #121214;
 }
+
 .call-to-action-area {
     padding-top: 15px;
-    
+
 }
-.call-to-action-part  h2{
+
+.call-to-action-part h2 {
     font-size: 40px;
     line-height: 50px;
     margin-bottom: 20px;
     font-weight: 400;
 }
+
 .footer-bottom {}
 
 .footer-bottom .copyright-text {
@@ -2788,7 +2816,7 @@ ul.blog_pagination li a:hover {
 }
 
 .single-side-bar ul li a:hover {
-    color: #fff; 
+    color: #fff;
     opacity: 1;
 }
 

@@ -54,4 +54,5 @@ export const projectsData = [
         project: "Creative",
         description: "Elon came to me and said I want my cars to look futuristic so I made the CyberTruck."
     },
+    
 ]
