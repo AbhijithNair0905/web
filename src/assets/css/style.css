@@ -1685,7 +1685,7 @@ ul.extra-skills li i {
 
 .single-image img {
     width: 100%;
-    height: 480px;
+    /* height: 480px; */
     object-fit: cover;
     display: block;
 }
@@ -1725,9 +1725,9 @@ ul.extra-skills li i {
 
 .project-image img {
     width: 100%;
-    height: 170px;
-    object-fit: cover;
-    display: block;
+    /* height: 170px; */
+    /* object-fit: cover; */
+    /* display: block; */
 }
 
 .single-project-item {
