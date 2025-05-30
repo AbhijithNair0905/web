@@ -15,11 +15,17 @@ const Project2 = () => {
           </div>
         </div>
       </div>
-      <div class="single-project-image">
-        {/* <img src={singleProjectImg} alt="image" /> */}
-        <video autoPlay muted loop>
-          <source src={`/projects/${id}/banner.mp4`} type="video/mp4" />
-        </video>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-10">
+            <div class="single-project-image mb-4">
+              {/* <img src={singleProjectImg} alt="image" /> */}
+              <video className="w-100 rounded"autoPlay muted loop>
+                <source src={`/projects/${id}/banner.mp4`} type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="container pt-30">
         <div class="row">
