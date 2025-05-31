@@ -184,265 +184,265 @@ export const projectsData = [
     },
     {
         id: 5,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674162/1_nsggq0.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/1.webm",
         category: "Animations",
         title: "1",
     },
     {
         id: 6,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674155/3_xuzakb.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/2.webm",
         category: "Animations",
         title: "2",
     },
     {
         id: 7,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674140/7_bfmg1o.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/3.webm",
         category: "Animations",
         title: "3",
     },
     {
         id: 8,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674138/4_jfiwm8.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/4.webm",
         category: "Animations",
         title: "4",
     },
     {
         id: 9,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674128/6_mcj9os.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/5.webm",
         category: "Animations",
         title: "5",
     },
     {
         id: 10,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674127/5_qgp4b2.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/6.webm",
         category: "Animations",
         title: "6",
     },
     {
         id: 11,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748674126/2_ptjtmj.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Animations/7.webm",
         category: "Animations",
         title: "7",
     },
     {
         id: 12,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677703/1_nam33f.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/1.webm",
         category: "Reels",
         title: "1",
     },
     {
         id: 13,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677866/10_pvlbxr.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/2.webm",
         category: "Reels",
         title: "2",
     },
     {
         id: 14,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677867/11_uryh2s.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/3.webm",
         category: "Reels",
-        title: "3",
+        title: "3"
     },
     {
         id: 15,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677982/12_bnmtex.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/4.webm",
         category: "Reels",
-        title: "4",
+        title: "4"
     },
     {
         id: 16,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677868/13_ks5t6h.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/5.webm",
         category: "Reels",
-        title: "5",
+        title: "5"
     },
     {
         id: 17,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677983/14_gqub4j.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/6.webm",
         category: "Reels",
-        title: "6",
+        title: "6"
     },
     {
         id: 18,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677709/15_mpkznh.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/7.webm",
         category: "Reels",
-        title: "7",
+        title: "7"
     },
     {
         id: 19,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677984/16_gealzl.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/8.webm",
         category: "Reels",
-        title: "8",
+        title: "8"
     },
     {
         id: 20,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677869/17_n47ei2.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/9.webm",
         category: "Reels",
-        title: "9",
+        title: "9"
     },
     {
         id: 21,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677985/18_qj0dhr.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/10.webm",
         category: "Reels",
-        title: "10",
+        title: "10"
     },
     {
         id: 22,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677870/19_n9cma9.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/11.webm",
         category: "Reels",
-        title: "11",
+        title: "11"
     },
     {
         id: 23,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677999/2_rwudj0.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/12.webm",
         category: "Reels",
-        title: "12",
+        title: "12"
     },
     {
         id: 24,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748678002/20_d9kt6o.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/13.webm",
         category: "Reels",
-        title: "13",
+        title: "13"
     },
     {
         id: 25,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677987/21_yrjqlj.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/14.webm",
         category: "Reels",
-        title: "14",
+        title: "14"
     },
     {
         id: 26,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677871/22_lzoezc.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/15.webm",
         category: "Reels",
-        title: "15",
+        title: "15"
     },
     {
         id: 27,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677708/23_sffd3e.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/16.webm",
         category: "Reels",
-        title: "16",
+        title: "16"
     },
     {
         id: 28,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677710/24_gwzadn.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/17.webm",
         category: "Reels",
-        title: "17",
+        title: "17"
     },
     {
         id: 29,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677988/25_qkohlf.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/18.webm",
         category: "Reels",
-        title: "18",
+        title: "18"
     },
     {
         id: 30,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677997/26_nnpouh.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/19.webm",
         category: "Reels",
-        title: "19",
+        title: "19"
     },
     {
         id: 31,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677872/27_a9x6bx.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/20.webm",
         category: "Reels",
         title: "20"
     },
     {
         id: 32,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677989/28_bhizvc.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/21.webm",
         category: "Reels",
         title: "21"
     },
     {
         id: 33,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677993/29_wqui2c.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/22.webm",
         category: "Reels",
         title: "22"
     },
     {
         id: 34,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677713/3_z8lg4g.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/23.webm",
         category: "Reels",
         title: "23"
     },
     {
         id: 35,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677991/30_pbvboc.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/24.webm",
         category: "Reels",
         title: "24"
     },
     {
         id: 36,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748678000/31_fe9uce.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/25.webm",
         category: "Reels",
         title: "25"
     },
     {
         id: 37,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677922/32_ldckf2.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/26.webm",
         category: "Reels",
         title: "26"
     },
     {
         id: 38,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677980/33_ht4cha.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/27.webm",
         category: "Reels",
         title: "27"
     },
     {
         id: 39,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677711/34_mdxaud.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/28.webm",
         category: "Reels",
         title: "28"
     },
     {
         id: 40,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677995/35_mwj2pr.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/29.webm",
         category: "Reels",
         title: "29"
     },
     {
         id: 41,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677993/36_xgvl78.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/30.webm",
         category: "Reels",
         title: "30"
     },
     {
         id: 42,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677709/37_xxxqrc.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/31.webm",
         category: "Reels",
         title: "31"
     },
     {
         id: 43,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677707/4_kablhh.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/32.webm",
         category: "Reels",
         title: "32"
     },
     {
         id: 44,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677706/5_mfpkzs.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/33.webm",
         category: "Reels",
         title: "33"
     },
     {
         id: 45,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677704/6_bup8i2.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/34.webm",
         category: "Reels",
         title: "34"
     },
     {
         id: 46,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677764/7_xo1dxh.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/35.webm",
         category: "Reels",
         title: "35"
     },
     {
         id: 47,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677775/8_yuux1g.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/36.webm",
         category: "Reels",
         title: "36"
     },
     {
         id: 48,
-        videoUrl: "https://res.cloudinary.com/dwzxgz6ua/video/upload/v1748677996/9_binlik.webm",
+        videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/37.webm",
         category: "Reels",
         title: "37"
     },

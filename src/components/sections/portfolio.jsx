@@ -106,6 +106,7 @@ const VideoCard = ({ category, title, videoUrl, animationClass, id }) => {
                     <div className="project-image">
                         <video
                             src={videoUrl}
+                            type="video/webm"
                             autoPlay
                             muted
                             loop
