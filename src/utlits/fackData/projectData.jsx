@@ -446,4 +446,105 @@ export const projectsData = [
         category: "Reels",
         title: "37"
     },
+    {
+        id: 49,
+        category: "Posts",
+        postId: 1
+    },
+    {
+        id: 50,
+        category: "Posts",
+        postId: 2
+    },
+    {
+        id: 51,
+        category: "Posts",
+        postId: 3
+    },
+    {
+        id: 52,
+        category: "Posts",
+        postId: 4
+    },
+    {
+        id: 53,
+        category: "Posts",
+        postId: 5
+    },
+    {
+        id: 54,
+        category: "Posts",
+        postId: 6
+    },
+    {
+        id: 55,
+        category: "Posts",
+        postId: 7
+    },
+    {
+        id: 56,
+        category: "Posts",
+        postId: 8
+    },
+    {
+        id: 57,
+        category: "Posts",
+        postId: 9
+    },
+    {
+        id: 58,
+        category: "Posts",
+        postId: 10
+    },
+    {
+        id: 59,
+        category: "Posts",
+        postId: 11
+    },
+    {
+        id: 60,
+        category: "Posts",
+        postId: 12
+    },
+    {
+        id: 61,
+        category: "Posts",
+        postId: 13
+    },
+    {
+        id: 62,
+        category: "Posts",
+        postId: 14
+    },
+    {
+        id: 63,
+        category: "Posts",
+        postId: 15
+    },
+    {
+        id: 64,
+        category: "Posts",
+        postId: 16
+    },
+    {
+        id: 65,
+        category: "Posts",
+        postId: 17
+    },
+    {
+        id: 66,
+        category: "Posts",
+        postId: 18
+    },
+    {
+        id: 67,
+        category: "Posts",
+        postId: 19
+    },
+    {
+        id: 68,
+        category: "Posts",
+        postId: 20
+    },
+
 ]
