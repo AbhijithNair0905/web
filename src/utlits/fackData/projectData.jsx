@@ -228,223 +228,223 @@ export const projectsData = [
         id: 12,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/1.webm",
         category: "Reels",
-        title: "1",
+        vid: 1,
     },
     {
         id: 13,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/2.webm",
         category: "Reels",
-        title: "2",
+        vid: 2,
     },
     {
         id: 14,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/3.webm",
         category: "Reels",
-        title: "3"
+        vid: 3
     },
     {
         id: 15,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/4.webm",
         category: "Reels",
-        title: "4"
+        vid: 4
     },
     {
         id: 16,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/5.webm",
         category: "Reels",
-        title: "5"
+        vid: 5
     },
     {
         id: 17,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/6.webm",
         category: "Reels",
-        title: "6"
+        vid: 6
     },
     {
         id: 18,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/7.webm",
         category: "Reels",
-        title: "7"
+        vid: 7
     },
     {
         id: 19,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/8.webm",
         category: "Reels",
-        title: "8"
+        vid: 8
     },
     {
         id: 20,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/9.webm",
         category: "Reels",
-        title: "9"
+        vid: 9
     },
     {
         id: 21,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/10.webm",
         category: "Reels",
-        title: "10"
+        vid: 10
     },
     {
         id: 22,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/11.webm",
         category: "Reels",
-        title: "11"
+        vid: 11
     },
     {
         id: 23,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/12.webm",
         category: "Reels",
-        title: "12"
+        vid: 12
     },
     {
         id: 24,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/13.webm",
         category: "Reels",
-        title: "13"
+        vid: 13
     },
     {
         id: 25,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/14.webm",
         category: "Reels",
-        title: "14"
+        vid: 14
     },
     {
         id: 26,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/15.webm",
         category: "Reels",
-        title: "15"
+        vid: 15
     },
     {
         id: 27,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/16.webm",
         category: "Reels",
-        title: "16"
+        vid: 16
     },
     {
         id: 28,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/17.webm",
         category: "Reels",
-        title: "17"
+        vid: 17
     },
     {
         id: 29,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/18.webm",
         category: "Reels",
-        title: "18"
+        vid: 18
     },
     {
         id: 30,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/19.webm",
         category: "Reels",
-        title: "19"
+        vid: 19
     },
     {
         id: 31,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/20.webm",
         category: "Reels",
-        title: "20"
+        vid: 20
     },
     {
         id: 32,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/21.webm",
         category: "Reels",
-        title: "21"
+        vid: 21
     },
     {
         id: 33,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/22.webm",
         category: "Reels",
-        title: "22"
+        vid: 22
     },
     {
         id: 34,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/23.webm",
         category: "Reels",
-        title: "23"
+        vid: 23
     },
     {
         id: 35,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/24.webm",
         category: "Reels",
-        title: "24"
+        vid: 24
     },
     {
         id: 36,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/25.webm",
         category: "Reels",
-        title: "25"
+        vid: 25
     },
     {
         id: 37,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/26.webm",
         category: "Reels",
-        title: "26"
+        vid: 26
     },
     {
         id: 38,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/27.webm",
         category: "Reels",
-        title: "27"
+        vid: 27
     },
     {
         id: 39,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/28.webm",
         category: "Reels",
-        title: "28"
+        vid: 28
     },
     {
         id: 40,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/29.webm",
         category: "Reels",
-        title: "29"
+        vid: 29
     },
     {
         id: 41,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/30.webm",
         category: "Reels",
-        title: "30"
+        vid: 30
     },
     {
         id: 42,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/31.webm",
         category: "Reels",
-        title: "31"
+        vid: 31
     },
     {
         id: 43,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/32.webm",
         category: "Reels",
-        title: "32"
+        vid: 32
     },
     {
         id: 44,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/33.webm",
         category: "Reels",
-        title: "33"
+        vid: 33
     },
     {
         id: 45,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/34.webm",
         category: "Reels",
-        title: "34"
+        vid: 34
     },
     {
         id: 46,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/35.webm",
         category: "Reels",
-        title: "35"
+        vid: 35
     },
     {
         id: 47,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/36.webm",
         category: "Reels",
-        title: "36"
+        vid: 36
     },
     {
         id: 48,
         videoUrl: "https://abhijithnair.b-cdn.net/Social%20Media/Reels/37.webm",
         category: "Reels",
-        title: "37"
+        vid: 37
     },
     {
         id: 49,

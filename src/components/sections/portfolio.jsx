@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { RiArrowRightUpLine } from '@remixicon/react'
 import { projectsData } from '../../utlits/fackData/projectData'
 import SlideUp from '../../utlits/animations/slideUp';
+import LazyVideo from '../../utlits/lazyVideo';
 
 const animations = ['slideIn', 'fadeIn', 'scaleUp'];
 
@@ -57,7 +58,7 @@ const Portfolio = ({ className }) => {
                         {category === "Branding" && filteredProjects.map(({ category, id, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                         {category === "Animations" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                         {category === "Reels" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
-                        {category === "Posts" && filteredProjects.map(({ id, postId }) => <Photocard key={id} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.webp`} animationClass={animationClass} />)}
+                        {category === "Posts" && filteredProjects.map(({ id, postId, vid }) => <Photocard key={id} vid={vid} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.webp`} animationClass={animationClass} />)}
                     </div>
                 </div>
             </div>
@@ -99,14 +100,16 @@ const Photocard = ({ src, animationClass, id, postId }) => {
 }
 
 // VideoCard component for videos from Cloudinary
-const VideoCard = ({ category, title, videoUrl, animationClass, id }) => {
+const VideoCard = ({ category, vid, videoUrl, animationClass, id }) => {
     return (
         <div className={`col-lg-4 col-md-6 item branding game ${animationClass}`}>
-            <SlideUp delay={id}>
+            <SlideUp delay={vid}>
                     <div className="project-image">
                         <video
                             src={videoUrl}
                             type="video/webm"
+                            playsInline
+                            preload='metadata'
                             autoPlay
                             muted
                             loop
