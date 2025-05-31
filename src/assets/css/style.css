@@ -1646,6 +1646,11 @@ ul.extra-skills li i {
 * 09.PORTFOLIO CSS STYLE
 * ----------------------------------------------------------------------------------------
 */
+.project-description ul li {
+    list-style-type: disc;
+    margin-left: 30px;
+}
+
 .projects-area {
     padding-top: 15px;
     padding-bottom: 15px;

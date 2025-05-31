@@ -12,7 +12,7 @@ const getRandomAnimation = () => {
 };
 
 const Portfolio = ({ className }) => {
-    const [category, setCategory] = useState('All');
+    const [category, setCategory] = useState('Branding');
     const [animationClass, setAnimationClass] = useState('');
 
     const handleCategoryClick = (item) => {
@@ -22,7 +22,7 @@ const Portfolio = ({ className }) => {
     }
 
     // ------ filter unique category
-    const filteredCategory = ["All"]
+    const filteredCategory = ["Branding"]
     projectsData.forEach(({ category }) => {
         if (!filteredCategory.includes(category)) {
             filteredCategory.push(category)
@@ -30,7 +30,7 @@ const Portfolio = ({ className }) => {
     })
     // ------ filter unique category
 
-    const filteredProjects = category === 'All' ? projectsData : projectsData.filter(image => image.category === category);
+    const filteredProjects = projectsData.filter(image => image.category === category);
 
 
     return (
@@ -53,9 +53,9 @@ const Portfolio = ({ className }) => {
                             {filteredCategory.map((item, id) => <li key={id} onClick={() => handleCategoryClick(item)} className={item === category ? "current" : ""}>{item}</li>)}
                         </ul>
                     </SlideUp>
-                    <div className="row project-masonry-active overflow-hidden">
-                        {filteredProjects.map(({ category, id, src, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
-
+                    <div className="row project-masonry-active overflow-hidden">  
+                        {category === "Branding" && filteredProjects.map(({ category, id, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
+                        {category === "Animations" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                     </div>
                 </div>
             </div>
@@ -80,6 +80,26 @@ const Card = ({ category, title, src, animationClass, id }) => {
                         <h3>{title}</h3>
                     </div>
                 </div>
+            </SlideUp>
+        </div>
+    )
+}
+
+// VideoCard component for videos from Cloudinary
+const VideoCard = ({ category, title, videoUrl, animationClass, id }) => {
+    return (
+        <div className={`col-lg-4 col-md-6 item branding game ${animationClass}`}>
+            <SlideUp delay={id}>
+                    <div className="project-image">
+                        <video
+                            src={videoUrl}
+                            autoPlay
+                            muted
+                            loop
+                            poster=""
+                            style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+                        />
+                    </div>
             </SlideUp>
         </div>
     )

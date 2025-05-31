@@ -54,10 +54,9 @@ const Project1 = () => {
           {/* <!-- START SINGLE RIGHT DESIGN AREA --> */}
           <div class="col-lg-8">
             <div class="single-project-page-right wow fadeInUp delay-0-4s">
-              <h2>Description</h2>
-              <p>{project.description}</p>
-              {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit utsadi sfejdis aliquam, purus sit amet luctus venenatis, lectus magna sansit trandis fringilla urna, porttitor rhoncus dolor purus non enim dollors praesent tabasi elementum facilisis leo.</p> */}
-              {/* <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable sourc consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p> */}
+              <h2 className="fs-4">Description</h2>
+              <br></br>
+              {project.description}
             </div>
           </div>
           {/* <!-- / END SINGLE RIGHT DESIGN AREA --> */}

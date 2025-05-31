@@ -11,7 +11,7 @@ const Footer = () => {
                         <div className="col-lg-6">
                             <div className="copyright-text">
                                 <p>
-                                    Copyright @{year}, <Link to="/">Bentos</Link> All
+                                    Copyright @{year}, <Link to="/">Abhijith Nair</Link> All
                                     Rights Reserved.
                                 </p>
                             </div>
@@ -19,7 +19,10 @@ const Footer = () => {
                         <div className="col-lg-6">
                             <div className="copyright-text extra-copyright">
                                 <p>
-                                    Add text
+                                    Built with ❤️ by {' '}
+                                    <a href="https://yuvser.vercel.app" target="_blank" rel="noopener noreferrer">
+                                        Yuvraj Darekar
+                                    </a>
                                 </p>
                             </div>
                         </div>
