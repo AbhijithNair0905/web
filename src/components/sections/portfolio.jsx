@@ -57,7 +57,7 @@ const Portfolio = ({ className }) => {
                         {category === "Branding" && filteredProjects.map(({ category, id, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                         {category === "Animations" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                         {category === "Reels" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
-                        {category === "Posts" && filteredProjects.map(({ id, postId }) => <Photocard key={id} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.jpg`} animationClass={animationClass} />)}
+                        {category === "Posts" && filteredProjects.map(({ id, postId }) => <Photocard key={id} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.webp`} animationClass={animationClass} />)}
                     </div>
                 </div>
             </div>
