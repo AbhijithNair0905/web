@@ -56,6 +56,7 @@ const Portfolio = ({ className }) => {
                     <div className="row project-masonry-active overflow-hidden">  
                         {category === "Branding" && filteredProjects.map(({ category, id, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                         {category === "Animations" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
+                        {category === "Reels" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
                     </div>
                 </div>
             </div>
@@ -97,7 +98,7 @@ const VideoCard = ({ category, title, videoUrl, animationClass, id }) => {
                             muted
                             loop
                             poster=""
-                            style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+                            style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
                         />
                     </div>
             </SlideUp>
