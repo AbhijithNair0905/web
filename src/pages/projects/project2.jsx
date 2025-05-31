@@ -11,7 +11,7 @@ const Project2 = () => {
         <div class="row">
           <div class="col-lg-12 text-center pb-30">
             <p>{project.title}</p>
-            <h1>{project.bname}</h1>
+            <h1>{project.title}</h1>
           </div>
         </div>
       </div>

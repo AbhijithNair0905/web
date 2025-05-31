@@ -50,9 +50,9 @@ export const projectsData = [
         category: "Branding",
         title: "Poetry and Pottery",
         bname: "Tesla: Redefining modern cars",
-        year: "2069",
-        client: "Elon Musk",
-        service: "Car designing",
+        year: "2023",
+        client: "Poetry and Pottery",
+        service: "Logo Design, Branding",
         project: "Creative",
         description: <div className="project-description">
             <h3 class="fs-5">Introduction</h3>
@@ -92,9 +92,9 @@ export const projectsData = [
         category: "Branding",
         title: "The Cereal Eater",
         bname: "The Cereal Eater",
-        year: "2069",
-        client: "Elon Musk",
-        service: "Car designing",
+        year: "2023",
+        client: "Cereal Eater",
+        service: "Branding, Packaging Design",
         project: "Creative",
         description: <div className="project-description">
             <h3 class="fs-5">Introduction</h3>
@@ -136,9 +136,9 @@ export const projectsData = [
         category: "Branding",
         title: "Dr. Collagen",
         bname: "Dr. Collagen",
-        year: "2069",
-        client: "Elon Musk",
-        service: "Car designing",
+        year: "2023",
+        client: "Dr. Collagen",
+        service: "Branding, Packaging Design",
         project: "Creative",
         description: <div className="project-description">
             <h3 class="fs-5">Introduction</h3>
