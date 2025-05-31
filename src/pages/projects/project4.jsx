@@ -93,6 +93,11 @@ const Project4 = () => {
               <img src={`/projects/${id}/artboard6.png`} alt="gallery" />
             </div>
           </div>
+          <div class="col-lg-12">
+            <div class="single-image wow fadeInUp delay-0-6s">
+              <img src={`/projects/${id}/artboard7.png`} alt="gallery" />
+            </div>
+          </div>
         </div>
         {/* <!--  / END SINGLE PAGE GALLERY DESIGN AREA --> */}
       </div>
