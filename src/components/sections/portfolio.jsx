@@ -12,6 +12,15 @@ const getRandomAnimation = () => {
     return animations[randomIndex];
 };
 
+// Helper function to chunk an array into arrays of size n
+function chunkArray(array, size) {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+        result.push(array.slice(i, i + size));
+    }
+    return result;
+}
+
 const Portfolio = ({ className }) => {
     const [category, setCategory] = useState('Branding');
     const [animationClass, setAnimationClass] = useState('');
@@ -33,6 +42,10 @@ const Portfolio = ({ className }) => {
 
     const filteredProjects = projectsData.filter(image => image.category === category);
 
+    // For Animations and Reels, chunk the projects into groups of 3
+    const chunkedProjects = (category === "Animations" || category === "Reels")
+        ? chunkArray(filteredProjects, 3)
+        : [];
 
     return (
         <section id="portfolio" className={`projects-area ${className}`}>
@@ -55,10 +68,19 @@ const Portfolio = ({ className }) => {
                         </ul>
                     </SlideUp>
                     <div className="row project-masonry-active overflow-hidden">  
-                        {category === "Branding" && filteredProjects.map(({ category, id, title }) => <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.webp`} title={title} animationClass={animationClass} />)}
-                        {category === "Animations" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
-                        {category === "Reels" && filteredProjects.map(({ category, id, videoUrl, title }) => <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />)}
-                        {category === "Posts" && filteredProjects.map(({ id, postId, vid }) => <Photocard key={id} vid={vid} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.webp`} animationClass={animationClass} />)}
+                        {category === "Branding" && filteredProjects.map(({ category, id, title }) => (
+                            <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.webp`} title={title} animationClass={animationClass} />
+                        ))}
+                        {(category === "Animations" || category === "Reels") && chunkedProjects.map((group, idx) => (
+                            <div className="row" key={idx} style={{ width: "100%" }}>
+                                {group.map(({ category, id, videoUrl, title }) => (
+                                    <VideoCard key={id} id={id} videoUrl={videoUrl} category={category} src={`/projects/${id}/thumbnail.png`} title={title} animationClass={animationClass} />
+                                ))}
+                            </div>
+                        ))}
+                        {category === "Posts" && filteredProjects.map(({ id, postId, vid }) => (
+                            <Photocard key={id} vid={vid} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.webp`} animationClass={animationClass} />
+                        ))}
                     </div>
                 </div>
             </div>
