@@ -20,7 +20,7 @@ const Project4 = () => {
           <div className="col-12 col-md-10">
             <div className="single-project-image mb-4">
               <video className="w-100 rounded" autoPlay muted loop>
-                <source src={`/projects/${id}/banner.mp4`} type="video/mp4" />
+                <source src={`/projects/${id}/banner.webm`} type="video/webm" />
               </video>
             </div>
           </div>
@@ -65,37 +65,37 @@ const Project4 = () => {
         <div class="row pt-30">
           <div class="col-lg-6">
             <div class="single-image wow fadeInUp delay-0-2s">
-              <img src={`/projects/${id}/artboard1.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard1.webp`} alt="gallery" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-image wow fadeInUp delay-0-4s">
-              <img src={`/projects/${id}/artboard2.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard2.webp`} alt="gallery" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-image wow fadeInUp delay-0-6s">
-              <img src={`/projects/${id}/artboard3.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard3.webp`} alt="gallery" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-image wow fadeInUp delay-0-8s">
-              <img src={`/projects/${id}/artboard4.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard4.webp`} alt="gallery" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-image wow fadeInUp delay-0-8s">
-              <img src={`/projects/${id}/artboard5.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard5.webp`} alt="gallery" />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="single-image wow fadeInUp delay-0-8s">
-              <img src={`/projects/${id}/artboard6.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard6.webp`} alt="gallery" />
             </div>
           </div>
           <div class="col-lg-12">
             <div class="single-image wow fadeInUp delay-0-6s">
-              <img src={`/projects/${id}/artboard7.png`} alt="gallery" />
+              <img src={`/projects/${id}/artboard7.webp`} alt="gallery" />
             </div>
           </div>
         </div>
