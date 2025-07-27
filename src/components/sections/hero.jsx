@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom'
 import Marquee from "react-fast-marquee";
 import { RiFacebookCircleFill, RiTwitterXLine, RiLinkedinFill, RiGithubLine, RiCircleFill, RiDownloadLine } from '@remixicon/react'
 import profile from "../../assets/images/about/profile.png"
-import partner1 from "../../assets/images/client-logos/partner1.png"
-import partner2 from "../../assets/images/client-logos/partner2.png"
-import partner3 from "../../assets/images/client-logos/partner3.png"
-import partner4 from "../../assets/images/client-logos/partner4.png"
-import partner5 from "../../assets/images/client-logos/partner5.png"
+import partner1 from "../../assets/images/client-logos/partner1.webp"
+import partner2 from "../../assets/images/client-logos/partner2.webp"
+import partner3 from "../../assets/images/client-logos/partner3.webp"
+import partner4 from "../../assets/images/client-logos/partner4.webp"
+import partner5 from "../../assets/images/client-logos/partner5.webp"
+import partner6 from "../../assets/images/client-logos/partner6.webp"
+import partner7 from "../../assets/images/client-logos/partner7.webp"
+import partner8 from "../../assets/images/client-logos/partner8.webp"
+import partner9 from "../../assets/images/client-logos/partner9.webp"
+import partner10 from "../../assets/images/client-logos/partner10.webp"
+import partner11 from "../../assets/images/client-logos/partner11.webp"
+import partner12 from "../../assets/images/client-logos/partner12.webp"
 import SlideUp from '../../utlits/animations/slideUp';
 
 const Hero = () => {
@@ -64,7 +71,13 @@ const Hero = () => {
                                                 <img src={partner3} alt="" />
                                                 <img src={partner4} alt="" />
                                                 <img src={partner5} alt="" />
-                                                <img src={partner1} alt="" />
+                                                <img src={partner6} alt="" />
+                                                <img src={partner7} alt="" />
+                                                <img src={partner8} alt="" />
+                                                <img src={partner9} alt="" />
+                                                <img src={partner10} alt="" />
+                                                <img src={partner11} alt="" />
+                                                <img src={partner12} alt="" />
                                             </Marquee>
                                         </div>
                                     </div>
