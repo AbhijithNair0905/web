@@ -9,7 +9,7 @@ export const projectsData = [
         id: 1,
         src: work_1,
         category: "Branding",
-        title: "ZIPPEX DELIVERY APP",
+        title: "Zippex Delivery App",
         bname: "ZIPPEX: Redefining Local Delivery",
         year: "2023",
         client: "Saransh Ahuja (Zippex Founder)",
