@@ -13,7 +13,7 @@ const ContactOption = () => {
                                 <i> <RiMapPinLine size={20} /></i>
                             </div>
                             <h2>My Location:</h2>
-                            <p>Mumbai,India</p>
+                            <p>Mumbai, India</p>
                         </div>
                     </SlideUp>
                     <SlideUp delay={3}>
@@ -31,7 +31,7 @@ const ContactOption = () => {
                                 <i> <RiMailLine size={20} /></i>
                             </div>
                             <h2>Email me:</h2>
-                            <p>abhijithnair@gmail.com</p>
+                            <p>abhijithnair0905@gmail.com</p>
                         </div>
                     </SlideUp>
                 </div>
