@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { RiArrowRightUpLine } from '@remixicon/react'
 import { projectsData } from '../../utlits/fackData/projectData'
 import SlideUp from '../../utlits/animations/slideUp';
-import LazyVideo from '../../utlits/lazyVideo';
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, useGLTF } from '@react-three/drei'
+import * as THREE from 'three';
 
 const animations = ['slideIn', 'fadeIn', 'scaleUp'];
 
@@ -67,7 +69,7 @@ const Portfolio = ({ className }) => {
                             {filteredCategory.map((item, id) => <li key={id} onClick={() => handleCategoryClick(item)} className={item === category ? "current" : ""}>{item}</li>)}
                         </ul>
                     </SlideUp>
-                    <div className="row project-masonry-active overflow-hidden">  
+                    <div className="row project-masonry-active overflow-hidden">
                         {category === "Branding" && filteredProjects.map(({ category, id, title }) => (
                             <Card key={id} id={id} category={category} src={`/projects/${id}/thumbnail.webp`} title={title} animationClass={animationClass} />
                         ))}
@@ -80,6 +82,9 @@ const Portfolio = ({ className }) => {
                         ))}
                         {category === "Posts" && filteredProjects.map(({ id, postId, vid }) => (
                             <Photocard key={id} vid={vid} postId={postId} id={id} src={`/projects/socialMedia/posts/${postId}.webp`} animationClass={animationClass} />
+                        ))}
+                        {category === "3D Models" && filteredProjects.map(({ id, modelId }) => (
+                            <GLBCard key={id} id={id} modelId={modelId} src={`/3dmodels/${modelId}.glb`} animationClass={animationClass} />
                         ))}
                     </div>
                 </div>
@@ -113,9 +118,9 @@ const Photocard = ({ src, animationClass, id, postId }) => {
     return (
         <div className={`col-lg-4 col-md-6 item branding game ${animationClass}`}>
             <SlideUp delay={postId}>
-                    <div className="project-image">
-                        <img src={src} alt="Project" />
-                    </div>
+                <div className="project-image">
+                    <img src={src} alt="Project" />
+                </div>
             </SlideUp>
         </div>
     )
@@ -126,20 +131,47 @@ const VideoCard = ({ category, vid, videoUrl, animationClass, id }) => {
     return (
         <div className={`col-lg-4 col-md-6 item branding game ${animationClass}`}>
             <SlideUp delay={vid}>
-                    <div className="project-image">
-                        <video
-                            src={videoUrl}
-                            type="video/webm"
-                            playsInline
-                            preload='metadata'
-                            autoPlay
-                            muted
-                            loop
-                            poster=""
-                            style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
-                        />
-                    </div>
+                <div className="project-image">
+                    <video
+                        src={videoUrl}
+                        type="video/webm"
+                        playsInline
+                        preload='metadata'
+                        autoPlay
+                        muted
+                        loop
+                        poster=""
+                        style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
+                    />
+                </div>
             </SlideUp>
+        </div>
+    )
+}
+
+const GLBCard = ({ src, animationClass, id, modelId }) => {
+    function Model() {
+        const { scene } = useGLTF(src)
+        React.useEffect(() => {
+            const box = new THREE.Box3().setFromObject(scene)
+            const center = box.getCenter(new THREE.Vector3())
+            scene.position.x -= center.x
+            scene.position.y -= center.y
+            scene.position.z -= center.z
+        }, [scene])
+        return <primitive object={scene} scale={8} />
+    }
+
+    return (
+        <div className={`col-lg-4 col-md-6 item branding game ${animationClass}`}>
+            <div className="project-image" style={{ height: 300, background: "#222", borderRadius: 8 }}>
+                <Canvas camera={{ position: [0, 0, 2.6] }}>
+                    <ambientLight intensity={1.2} />
+                    <directionalLight position={[2, 2, 2]} />
+                    <Model />
+                    <OrbitControls enablePan={false} enableZoom={false} />
+                </Canvas>
+            </div>
         </div>
     )
 }

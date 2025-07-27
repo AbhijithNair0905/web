@@ -22,10 +22,12 @@ const Summery = () => {
                         <SlideUp>
                             <div className="about-content-part">
                                 <h2>
-                                    I’m Abhijith Nair, a designer.
+                                    I’m Abhijith Nair
                                 </h2>
-                                <p>I am a Mumbai-based designer with a focus on product design, illustration, a visual development. I have a diverse range of experience having worked across various fields and industries.</p>
-                                <p>My work is driven by a passion for creating meaningful and impactful experiences. I believe in the power of design to solve problems and enhance the way we interact with the world around us.</p>
+                                <p>A Mumbai-based designer blending graphic design, motion, 3D, and branding into bold, clear visual stories.
+                                </p>
+                                <p>I’ve worked across wellness, fashion, tech, and entertainment, shaping everything from brand identities to CGI reels and AR-powered content.
+                                I like pushing ideas — not just pixels — and I’m always up for projects that value clarity, craft, and a bit of fun.</p>
                                 <div className="hero-btns">
                                     <Link to="/contact" className="theme-btn">Get In touch<i> <RiMailSendLine size={16} /> </i></Link>
                                 </div>

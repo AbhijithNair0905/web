@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { RiDownloadLine } from '@remixicon/react'
+import { RiMailSendLine } from '@remixicon/react'
 import SlideUp from '../../utlits/animations/slideUp'
 
 const CallToAction = () => {
@@ -15,7 +15,7 @@ const CallToAction = () => {
                                 <h2>Are You Ready to kickstart your project with a touch of magic?</h2>
                                 <p>Reach out and let's make it happen ✨. I'm also available for full-time or Part-time opportunities to push the boundaries of design and deliver exceptional work.</p>
                                 <div className="hero-btns">
-                                    <Link to="/contact" className="theme-btn">Let's Talk  <i><RiDownloadLine size={16} /></i></Link>
+                                    <Link to="/contact" className="theme-btn">Let's Talk  <i><RiMailSendLine size={16} /></i></Link>
                                 </div>
                             </div>
                         </SlideUp>

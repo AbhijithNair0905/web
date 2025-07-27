@@ -1,3 +1,4 @@
+import { mode } from "@cloudinary/url-gen/actions/rotate"
 import work_1 from "../../assets/images/projects/work1.jpg"
 import work_2 from "../../assets/images/projects/work2.jpg"
 import work_3 from "../../assets/images/projects/work3.jpg"
@@ -546,5 +547,25 @@ export const projectsData = [
         category: "Posts",
         postId: 20
     },
+    {
+        id: 69,
+        category: "3D Models",
+        modelId: 1
+    },
+    {
+        id: 70,
+        category: "3D Models",
+        modelId: 2
+    },
+    {
+        id: 71,
+        category: "3D Models",
+        modelId: 3
+    },
+    {
+        id: 72,
+        category: "3D Models",
+        modelId: 4
+    }
 
 ]
