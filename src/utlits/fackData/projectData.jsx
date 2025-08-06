@@ -561,11 +561,6 @@ export const projectsData = [
         id: 71,
         category: "3D Models",
         modelId: 3
-    },
-    {
-        id: 72,
-        category: "3D Models",
-        modelId: 4
     }
 
 ]

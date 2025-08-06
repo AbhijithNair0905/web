@@ -63,7 +63,7 @@ const Hero = () => {
                         </SlideUp>
                         <SlideUp>
                             <div className="about-content-part-bottom">
-                                <h2>Company I Worked With</h2>
+                                <h2>Trusted By</h2>
                                 <div className="company-list">
                                     <div className="scroller">
                                         <div className="scroller__inner">
