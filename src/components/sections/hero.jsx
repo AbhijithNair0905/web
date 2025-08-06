@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Marquee from "react-fast-marquee";
-import { RiFacebookCircleFill, RiTwitterXLine, RiLinkedinFill, RiGithubLine, RiCircleFill, RiDownloadLine } from '@remixicon/react'
+import { RiCircleFill, RiDownloadLine, RiDiscordLine, RiInstagramLine, RiBehanceLine, RiLinkedinLine } from '@remixicon/react'
 import profile from "../../assets/images/about/profile.png"
 import partner1 from "../../assets/images/client-logos/partner1.webp"
 import partner2 from "../../assets/images/client-logos/partner2.webp"
@@ -31,10 +31,10 @@ const Hero = () => {
                                 <p>I am a Designer based in Mumbai.</p>
                                 <div className="about-social text-center">
                                     <ul>
-                                        <li><Link to=""><RiFacebookCircleFill size={20} /></Link></li>
-                                        <li><Link to=""><RiTwitterXLine size={20} /></Link></li>
-                                        <li><Link to=""><RiLinkedinFill size={20} /></Link></li>
-                                        <li><Link to=""><RiGithubLine size={20} /></Link></li>
+                                        <li><Link to="http://discordapp.com/users/428577279170445353"><RiDiscordLine size={20} /></Link></li>
+                                        <li><Link to="https://www.instagram.com/abhijith._.n"><RiInstagramLine size={20} /></Link></li>
+                                        <li><Link to="https://www.behance.net/abhijithnair"><RiBehanceLine size={20} /></Link></li>
+                                        <li><Link to="https://www.linkedin.com/in/abhijith-nair-65654a122"><RiLinkedinLine size={20} /></Link></li>
                                     </ul>
                                 </div>
                             </div>
