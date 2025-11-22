@@ -29,14 +29,49 @@ const Hero = () => {
                                 <img src={profile} alt="About Me" />
                                 <h2>Abhijith Nair</h2>
                                 <p>I am a Designer based in Mumbai.</p>
-                                <div className="about-social text-center">
+                                  <div className="about-social text-center">
                                     <ul>
-                                        <li><Link to="http://discordapp.com/users/428577279170445353"><RiDiscordLine size={20} /></Link></li>
-                                        <li><Link to="https://www.instagram.com/abhijith._.n"><RiInstagramLine size={20} /></Link></li>
-                                        <li><Link to="https://www.behance.net/abhijithnair"><RiBehanceLine size={20} /></Link></li>
-                                        <li><Link to="https://www.linkedin.com/in/abhijith-nair-65654a122"><RiLinkedinLine size={20} /></Link></li>
+                                        <li>
+                                        <a
+                                            href="http://discordapp.com/users/428577279170445353"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <RiDiscordLine size={20} />
+                                        </a>
+                                        </li>
+
+                                        <li>
+                                        <a
+                                            href="https://www.instagram.com/abhijith._.n"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <RiInstagramLine size={20} />
+                                        </a>
+                                        </li>
+
+                                        <li>
+                                        <a
+                                            href="https://www.behance.net/abhijithnair"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <RiBehanceLine size={20} />
+                                        </a>
+                                        </li>
+
+                                        <li>
+                                        <a
+                                            href="https://www.linkedin.com/in/abhijith-nair-65654a122"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <RiLinkedinLine size={20} />
+                                        </a>
+                                        </li>
                                     </ul>
-                                </div>
+                                    </div>
                             </div>
                         </SlideUp>
                     </div>
@@ -49,11 +84,6 @@ const Hero = () => {
                                 <h2>
                                     I'm Abhijith Nair a designer skilled in graphic design, motion graphics, branding, and 3D animation. I bring bold ideas to life because nobody likes boring.
                                 </h2>
-                                <div className="adress-field">
-                                    <ul>
-                                        <li className='d-flex align-items-center'><i><RiCircleFill size={14} /></i> Available for Freelancing</li>
-                                    </ul>
-                                </div>
                                 <div className="hero-btns">
                                     <a href="/Abhijith Nair CV.pdf" className="theme-btn" download>
                                         Download CV <i><RiDownloadLine size={16} /></i>

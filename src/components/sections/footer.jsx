@@ -16,16 +16,7 @@ const Footer = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-lg-6">
-                            <div className="copyright-text extra-copyright">
-                                <p>
-                                    Built with ❤️ by {' '}
-                                    <a href="https://yuvser.vercel.app" target="_blank" rel="noopener noreferrer">
-                                        Yuvraj Darekar
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
