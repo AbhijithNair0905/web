@@ -1,0 +1,726 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "project-1",
+      "enabled": true,
+      "title": "The Cereal Eater",
+      "category": "Brand identity",
+      "cover": "/projects/3/thumbnail.webp",
+      "description": "A look inside The Cereal Eater identity, from the brand mark to its applications.",
+      "media": [
+        {
+          "type": "video",
+          "src": "/projects/3/banner.webm"
+        },
+        {
+          "type": "image",
+          "src": "/projects/3/artboard1.webp",
+          "alt": "The Cereal Eater — board 1"
+        },
+        {
+          "type": "image",
+          "src": "/projects/3/artboard2.webp",
+          "alt": "The Cereal Eater — board 2"
+        },
+        {
+          "type": "image",
+          "src": "/projects/3/artboard3.webp",
+          "alt": "The Cereal Eater — board 3"
+        },
+        {
+          "type": "video",
+          "src": "/projects/3/artboard4.webm"
+        },
+        {
+          "type": "image",
+          "src": "/projects/3/artboard5.webp",
+          "alt": "The Cereal Eater — board 5"
+        }
+      ]
+    },
+    {
+      "id": "project-2",
+      "enabled": true,
+      "title": "Zippex",
+      "category": "Brand identity",
+      "cover": "/projects/1/thumbnail.webp",
+      "description": "Brand identity and visual applications for the Zippex delivery app.",
+      "media": [
+        {
+          "type": "video",
+          "src": "/projects/1/banner.webm"
+        },
+        {
+          "type": "image",
+          "src": "/projects/1/artboard1.webp",
+          "alt": "Zippex — board 1"
+        },
+        {
+          "type": "image",
+          "src": "/projects/1/artboard2.webp",
+          "alt": "Zippex — board 2"
+        },
+        {
+          "type": "image",
+          "src": "/projects/1/artboard3.webp",
+          "alt": "Zippex — board 3"
+        },
+        {
+          "type": "image",
+          "src": "/projects/1/artboard4.webp",
+          "alt": "Zippex — board 4"
+        },
+        {
+          "type": "image",
+          "src": "/projects/1/artboard5.png",
+          "alt": "Zippex — board 5"
+        }
+      ]
+    },
+    {
+      "id": "project-3",
+      "enabled": true,
+      "title": "Poetry & Pottery",
+      "category": "Brand identity",
+      "cover": "/projects/2/thumbnail.webp",
+      "description": "An identity exploring the meeting point of poetry, craft and pottery.",
+      "media": [
+        {
+          "type": "video",
+          "src": "/projects/2/banner.webm"
+        },
+        {
+          "type": "image",
+          "src": "/projects/2/artboard1.webp",
+          "alt": "Poetry and Pottery — board 1"
+        },
+        {
+          "type": "image",
+          "src": "/projects/2/artboard2.webp",
+          "alt": "Poetry and Pottery — board 2"
+        },
+        {
+          "type": "image",
+          "src": "/projects/2/artboard3.webp",
+          "alt": "Poetry and Pottery — board 3"
+        },
+        {
+          "type": "image",
+          "src": "/projects/2/artboard4.webp",
+          "alt": "Poetry and Pottery — board 4"
+        },
+        {
+          "type": "image",
+          "src": "/projects/2/artboard5.webp",
+          "alt": "Poetry and Pottery — board 5"
+        }
+      ]
+    },
+    {
+      "id": "project-4",
+      "enabled": true,
+      "title": "Dr. Collagen",
+      "category": "Brand identity",
+      "cover": "/projects/4/thumbnail.webp",
+      "description": "Brand identity and design applications for Dr. Collagen.",
+      "media": [
+        {
+          "type": "video",
+          "src": "/projects/4/banner.webm"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard1.webp",
+          "alt": "Dr. Collagen — board 1"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard2.webp",
+          "alt": "Dr. Collagen — board 2"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard3.webp",
+          "alt": "Dr. Collagen — board 3"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard4.webp",
+          "alt": "Dr. Collagen — board 4"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard5.webp",
+          "alt": "Dr. Collagen — board 5"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard6.webp",
+          "alt": "Dr. Collagen — board 6"
+        },
+        {
+          "type": "image",
+          "src": "/projects/4/artboard7.webp",
+          "alt": "Dr. Collagen — board 7"
+        }
+      ]
+    }
+  ],
+  "reels": [
+    {
+      "id": "reel-1",
+      "enabled": true,
+      "title": "Reel 01",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/1.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-2",
+      "enabled": true,
+      "title": "Reel 02",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/2.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-3",
+      "enabled": true,
+      "title": "Reel 03",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/3.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-4",
+      "enabled": true,
+      "title": "Reel 04",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/4.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-5",
+      "enabled": true,
+      "title": "Reel 05",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/5.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-6",
+      "enabled": true,
+      "title": "Reel 06",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/6.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-7",
+      "enabled": true,
+      "title": "Reel 07",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/7.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-8",
+      "enabled": true,
+      "title": "Reel 08",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/8.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-9",
+      "enabled": true,
+      "title": "Reel 09",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/9.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-10",
+      "enabled": true,
+      "title": "Reel 10",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/10.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-11",
+      "enabled": true,
+      "title": "Reel 11",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/11.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-12",
+      "enabled": true,
+      "title": "Reel 12",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/12.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-13",
+      "enabled": true,
+      "title": "Reel 13",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/13.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-14",
+      "enabled": true,
+      "title": "Reel 14",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/14.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-15",
+      "enabled": true,
+      "title": "Reel 15",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/15.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-16",
+      "enabled": true,
+      "title": "Reel 16",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/16.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-17",
+      "enabled": true,
+      "title": "Reel 17",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/17.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-18",
+      "enabled": true,
+      "title": "Reel 18",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/18.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-19",
+      "enabled": true,
+      "title": "Reel 19",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/19.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-20",
+      "enabled": true,
+      "title": "Reel 20",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/20.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-21",
+      "enabled": true,
+      "title": "Reel 21",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/21.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-22",
+      "enabled": true,
+      "title": "Reel 22",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/22.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-23",
+      "enabled": true,
+      "title": "Reel 23",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/23.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-24",
+      "enabled": true,
+      "title": "Reel 24",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/24.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-25",
+      "enabled": true,
+      "title": "Reel 25",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/25.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-26",
+      "enabled": true,
+      "title": "Reel 26",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/26.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-27",
+      "enabled": true,
+      "title": "Reel 27",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/27.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-28",
+      "enabled": true,
+      "title": "Reel 28",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/28.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-29",
+      "enabled": true,
+      "title": "Reel 29",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/29.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-30",
+      "enabled": true,
+      "title": "Reel 30",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/30.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-31",
+      "enabled": true,
+      "title": "Reel 31",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/31.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-32",
+      "enabled": true,
+      "title": "Reel 32",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/32.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-33",
+      "enabled": true,
+      "title": "Reel 33",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/33.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-34",
+      "enabled": true,
+      "title": "Reel 34",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/34.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-35",
+      "enabled": true,
+      "title": "Reel 35",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/35.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-36",
+      "enabled": true,
+      "title": "Reel 36",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/36.webm",
+      "poster": ""
+    },
+    {
+      "id": "reel-37",
+      "enabled": true,
+      "title": "Reel 37",
+      "description": "From the social media archive.",
+      "src": "https://abhijithnair.b-cdn.net/Social%20Media/Reels/37.webm",
+      "poster": ""
+    }
+  ],
+  "animations": [
+    {
+      "id": "animation-1",
+      "enabled": true,
+      "title": "Exploration 01",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/1.webm",
+      "poster": ""
+    },
+    {
+      "id": "animation-2",
+      "enabled": true,
+      "title": "Exploration 02",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/2.webm",
+      "poster": ""
+    },
+    {
+      "id": "animation-3",
+      "enabled": true,
+      "title": "Exploration 03",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/3.webm",
+      "poster": ""
+    },
+    {
+      "id": "animation-4",
+      "enabled": true,
+      "title": "Exploration 04",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/4.webm",
+      "poster": ""
+    },
+    {
+      "id": "animation-5",
+      "enabled": true,
+      "title": "Exploration 05",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/5.webm",
+      "poster": ""
+    },
+    {
+      "id": "animation-6",
+      "enabled": true,
+      "title": "Exploration 06",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/6.webm",
+      "poster": ""
+    },
+    {
+      "id": "animation-7",
+      "enabled": true,
+      "title": "Exploration 07",
+      "description": "An experiment in animation from my portfolio archive.",
+      "src": "https://abhijithnair.b-cdn.net/Animations/7.webm",
+      "poster": ""
+    }
+  ],
+  "social": [
+    {
+      "id": "social-1",
+      "enabled": true,
+      "title": "Social media design 1",
+      "src": "/projects/socialMedia/posts/1.webp",
+      "alt": "Social media design 1"
+    },
+    {
+      "id": "social-2",
+      "enabled": true,
+      "title": "Social media design 2",
+      "src": "/projects/socialMedia/posts/2.webp",
+      "alt": "Social media design 2"
+    },
+    {
+      "id": "social-3",
+      "enabled": true,
+      "title": "Social media design 3",
+      "src": "/projects/socialMedia/posts/3.webp",
+      "alt": "Social media design 3"
+    },
+    {
+      "id": "social-4",
+      "enabled": true,
+      "title": "Social media design 4",
+      "src": "/projects/socialMedia/posts/4.webp",
+      "alt": "Social media design 4"
+    },
+    {
+      "id": "social-5",
+      "enabled": true,
+      "title": "Social media design 5",
+      "src": "/projects/socialMedia/posts/5.webp",
+      "alt": "Social media design 5"
+    },
+    {
+      "id": "social-6",
+      "enabled": true,
+      "title": "Social media design 6",
+      "src": "/projects/socialMedia/posts/6.webp",
+      "alt": "Social media design 6"
+    },
+    {
+      "id": "social-7",
+      "enabled": true,
+      "title": "Social media design 7",
+      "src": "/projects/socialMedia/posts/7.webp",
+      "alt": "Social media design 7"
+    },
+    {
+      "id": "social-8",
+      "enabled": true,
+      "title": "Social media design 8",
+      "src": "/projects/socialMedia/posts/8.webp",
+      "alt": "Social media design 8"
+    },
+    {
+      "id": "social-9",
+      "enabled": true,
+      "title": "Social media design 9",
+      "src": "/projects/socialMedia/posts/9.webp",
+      "alt": "Social media design 9"
+    },
+    {
+      "id": "social-10",
+      "enabled": true,
+      "title": "Social media design 10",
+      "src": "/projects/socialMedia/posts/10.webp",
+      "alt": "Social media design 10"
+    },
+    {
+      "id": "social-11",
+      "enabled": true,
+      "title": "Social media design 11",
+      "src": "/projects/socialMedia/posts/11.webp",
+      "alt": "Social media design 11"
+    },
+    {
+      "id": "social-12",
+      "enabled": true,
+      "title": "Social media design 12",
+      "src": "/projects/socialMedia/posts/12.webp",
+      "alt": "Social media design 12"
+    },
+    {
+      "id": "social-13",
+      "enabled": true,
+      "title": "Social media design 13",
+      "src": "/projects/socialMedia/posts/13.webp",
+      "alt": "Social media design 13"
+    },
+    {
+      "id": "social-14",
+      "enabled": true,
+      "title": "Social media design 14",
+      "src": "/projects/socialMedia/posts/14.webp",
+      "alt": "Social media design 14"
+    },
+    {
+      "id": "social-15",
+      "enabled": true,
+      "title": "Social media design 15",
+      "src": "/projects/socialMedia/posts/15.webp",
+      "alt": "Social media design 15"
+    },
+    {
+      "id": "social-16",
+      "enabled": true,
+      "title": "Social media design 16",
+      "src": "/projects/socialMedia/posts/16.webp",
+      "alt": "Social media design 16"
+    },
+    {
+      "id": "social-17",
+      "enabled": true,
+      "title": "Social media design 17",
+      "src": "/projects/socialMedia/posts/17.webp",
+      "alt": "Social media design 17"
+    },
+    {
+      "id": "social-18",
+      "enabled": true,
+      "title": "Social media design 18",
+      "src": "/projects/socialMedia/posts/18.webp",
+      "alt": "Social media design 18"
+    },
+    {
+      "id": "social-19",
+      "enabled": true,
+      "title": "Social media design 19",
+      "src": "/projects/socialMedia/posts/19.webp",
+      "alt": "Social media design 19"
+    },
+    {
+      "id": "social-20",
+      "enabled": true,
+      "title": "Social media design 20",
+      "src": "/projects/socialMedia/posts/20.webp",
+      "alt": "Social media design 20"
+    }
+  ],
+  "logos": [
+    {
+      "id": "logo-1",
+      "enabled": true,
+      "title": "Placeholder 1",
+      "src": "",
+      "placeholder": "orbit"
+    },
+    {
+      "id": "logo-2",
+      "enabled": true,
+      "title": "Placeholder 2",
+      "src": "",
+      "placeholder": "ribbon"
+    },
+    {
+      "id": "logo-3",
+      "enabled": true,
+      "title": "Placeholder 3",
+      "src": "",
+      "placeholder": "asterisk"
+    },
+    {
+      "id": "logo-4",
+      "enabled": true,
+      "title": "Placeholder 4",
+      "src": "",
+      "placeholder": "arcs"
+    },
+    {
+      "id": "logo-5",
+      "enabled": true,
+      "title": "Placeholder 5",
+      "src": "",
+      "placeholder": "rings"
+    },
+    {
+      "id": "logo-6",
+      "enabled": true,
+      "title": "Placeholder 6",
+      "src": "",
+      "placeholder": "diamond"
+    },
+    {
+      "id": "logo-7",
+      "enabled": true,
+      "title": "Placeholder 7",
+      "src": "",
+      "placeholder": "wave"
+    },
+    {
+      "id": "logo-8",
+      "enabled": true,
+      "title": "Placeholder 8",
+      "src": "",
+      "placeholder": "squares"
+    }
+  ]
+}

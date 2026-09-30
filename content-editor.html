@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Content studio — Abhijith Nair</title><link rel="stylesheet" href="/src/preview/content-editor.css"></head>
+<body>
+  <header class="studio-header"><div class="studio-brand"><img src="/abhijith-logo.png" width="164" height="98" alt="Abhijith Nair"><div><h1>Content studio</h1><span>Your portfolio, in your hands.</span></div></div><div class="header-actions"><span class="local-badge" id="studio-mode">On this computer</span><a id="view-website" href="/" target="_blank" rel="noopener">View website ↗</a><button id="save-content" class="primary" disabled>Save changes</button><button id="publish-content" class="primary" hidden disabled>Publish</button><button id="sign-out" class="secondary" hidden>Sign out</button></div></header>
+  <div class="studio-notice"><span id="save-state">Connecting to your content…</span><span id="studio-save-hint">Saves update this local preview. Your live domain stays unchanged.</span></div>
+  <div id="studio-status" role="status" aria-live="polite" aria-atomic="true"></div>
+  <section id="studio-login" class="studio-login" aria-labelledby="login-title" hidden>
+    <img class="login-logo" src="/abhijith-logo.png" alt="" width="164" height="98"><p class="overline">Your private workspace</p><h2 id="login-title">Welcome back.</h2><p id="login-intro">Sign in to manage your portfolio. Your drafts stay private until you publish.</p>
+    <p id="local-editor-shortcut" hidden><a class="primary" href="/content-editor.html">Open working editor →</a></p>
+    <form id="login-form"><fieldset id="login-fields"><label>Email address<input id="login-email" type="email" autocomplete="username" required></label><label>Password<input id="login-password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Sign in</button><button id="reset-password" class="secondary" type="button">Forgot password?</button></fieldset></form>
+    <form id="password-form" hidden><label>New password<input id="new-password" type="password" autocomplete="new-password" minlength="12" required></label><label>Confirm password<input id="confirm-password" type="password" autocomplete="new-password" minlength="12" required></label><button class="primary" type="submit">Set password</button></form>
+    <p id="login-status" role="status" aria-live="polite"></p><p class="login-footnote">Access is limited to the portfolio owner. There is no public sign-up.</p>
+  </section>
+  <main class="studio-layout" id="studio-layout" hidden>
+    <aside class="studio-sidebar"><p class="overline">Collections</p><nav id="collection-navigation" aria-label="Content categories"></nav><div class="backup-actions"><button id="seed-content" hidden>Import current portfolio</button><p class="overline">Keep a copy</p><button id="export-content">Download content backup ↓</button><label class="import-label" for="import-content">Restore content backup ↑</label><input id="import-content" type="file" accept="application/json,.json" hidden><p id="backup-hint">Backups contain text and file links. Uploaded media stays in your website project.</p></div></aside>
+    <section class="studio-collection" aria-labelledby="collection-title"><div class="collection-heading"><div><p class="overline" id="collection-count"></p><h2 id="collection-title"></h2></div><button id="add-item" class="small-button">+ Add item</button></div><div id="size-guide" class="size-guide"></div><div id="item-list" class="item-list" aria-label="Choose an item to edit"></div></section>
+    <section class="studio-detail" aria-labelledby="detail-title"><div class="detail-heading"><div><p class="overline">Edit item</p><h2 id="detail-title">Choose a tile</h2></div><span id="item-state"></span></div><form id="item-form"><fieldset id="editing-fields"></fieldset></form><div id="empty-detail" hidden>Add an item to start building this collection.</div></section>
+  </main>
+  <section id="connection-error" class="connection-error" hidden><h2>Open the local Content studio</h2><p>This editor saves files on your computer. Start the portfolio using “Start Content Studio” in your project folder, then open this page again.</p><p>Online editing will need a private sign-in and media storage when we publish the site.</p><button id="retry-connection">Try again</button></section>
+  <script type="module" src="/src/preview/content-editor.js"></script>
+</body></html>
