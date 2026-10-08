@@ -1,10 +1,10 @@
-import { groups, validateContent } from './content-schema.js';
+import { groups, validateContent, workTypes, projectType } from './content-schema.js';
 import { cloudConfigured } from './cloud-config.js';
 import { cloud, ownerSession, loadCloudDraft, saveCloudDraft, uploadCloudFile, previewCloudAsset, clearCloudPreviews, publishCloudDraft } from './cloud-studio.js';
 
 const labels = { projects: 'Projects', reels: 'Reels', animations: 'Motion explorations', social: 'Social designs', logos: 'Client logos' };
 const guides = {
-  projects: ['Cover: 1400 × 800 px · 7:4', 'Use JPG or WebP for covers, ideally under 1 MB. Keep essential text away from the edges.', 'Inside the popup: images around 1600–2000 px wide; tall e-commerce tiles keep their full height. Videos: MP4 (H.264) or WebM. Put the logo-reveal video first to autoplay.'],
+  projects: ['Cover: 1400 × 800 px · 7:4', 'Use JPG or WebP for covers, ideally under 1 MB. Keep essential text away from the edges.', 'Choose the work type below. Squares: 1600–2000 px per side. KVs: 2160 × 960 px (9:4). A+ artwork: 1600–2160 px wide, any height; mark it as a long layout. Videos: MP4 (H.264) or WebM. Put the logo-reveal video first to autoplay.'],
   reels: ['Video: 1080 × 1920 px · 9:16', 'MP4 (H.264) is a good export choice; WebM also works. Aim for under 20 MB for fast previews.', 'Optional cover: 1080 × 1920 px. The grid fills a portrait frame; playback in the popup keeps the original proportions.'],
   animations: ['Video: 1920 × 1080 px · 16:9', 'Use MP4 (H.264) or WebM, ideally under 20 MB. Different proportions also work without cropping the video.', 'Optional cover: 1600 × 1000 px · 8:5, matching the landscape preview tile.'],
   social: ['Image: 1080 × 1080 px or 1080 × 1350 px', 'JPG or WebP is best for fast loading; PNG works well for crisp graphics. Aim for under 1 MB.', 'Portrait artwork fits inside the square grid without cropping. The popup shows the whole image. The first six items appear on the homepage.'],
@@ -40,6 +40,13 @@ function field(labelText, value, onChange, options = {}) {
   label.append(input);
   if (options.help) label.append(make('small', '', options.help));
   return label;
+}
+function choice(labelText, value, options, onChange, help) {
+  const label = make('label', 'field-label', labelText), select = make('select');
+  for (const [key, text] of Object.entries(options)) { const option = make('option', '', text); option.value = key; select.append(option); }
+  select.value = value;
+  select.addEventListener('change', () => { onChange(select.value); change(); });
+  label.append(select); if (help) label.append(make('small', '', help)); return label;
 }
 function renderNavigation() {
   const navigation = $('#collection-navigation'); navigation.replaceChildren();
@@ -159,6 +166,7 @@ function renderDetail() {
   visibleLabel.append(visible, document.createTextNode('Show this item on the website')); fields.append(visibleLabel);
   fields.append(field(selectedGroup === 'logos' ? 'Company name' : 'Title', item.title, value => { item.title = value; $('#detail-title').textContent = value || 'Untitled'; renderList(); }));
   if (selectedGroup === 'projects') {
+    fields.append(choice('Work type / gallery layout', projectType(item), workTypes, value => { item.workType = value; }, 'Branding and E-commerce use a compact grid. Packaging and Key visuals use one fitted image with thumbnails. This also sets the Selected work filter.'));
     fields.append(field('Category', item.category, value => { item.category = value; }, { max: 100, help: 'For example: Brand identity, E-commerce design, or Campaign design.' }));
   }
   if ('description' in item) fields.append(field('Short description', item.description, value => { item.description = value; }, { multiline: true }));
@@ -176,6 +184,7 @@ function renderDetail() {
       const down = button('↓', () => { [item.media[index + 1], item.media[index]] = [item.media[index], item.media[index + 1]]; change(); renderDetail(); }); down.disabled = index === item.media.length - 1; down.setAttribute('aria-label', 'Move media later');
       controls.append(up, down, button('Remove', () => { if (!window.confirm('Remove this image or video from the project? The uploaded file will be kept.')) return; item.media.splice(index, 1); change(); renderDetail(); })); row.append(controls); block.append(row);
       block.append(assetControl(entry.type === 'image' ? 'Artwork' : 'Video', entry.src, entry.type, value => { entry.src = value; }));
+      if (entry.type === 'image') block.append(choice('Display format', entry.presentation || 'auto', { auto: 'Automatic — regular artwork', long: 'Long layout — A+ / full page' }, value => { entry.presentation = value; }, 'Long layouts open separately at a readable width. Very tall images are also detected automatically.'));
       if (entry.type === 'image') block.append(field('Image description', entry.alt || '', value => { entry.alt = value; }, { max: 240, help: 'Describe what is shown for visitors using a screen reader.' }));
       fields.append(block);
     });

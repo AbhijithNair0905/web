@@ -1,8 +1,10 @@
 import { loadContent } from './content-store.js';
+import { projectType, workTypes } from './content-schema.js';
 
 async function initGallery() {
 const content = await loadContent();
 const projects = content.projects.filter(item => item.enabled);
+let filteredProjects = projects;
 const socialCollection = { title: 'Social, by design', category: 'Social media collection', description: 'A collection of social media designs.', media: content.social.filter(item => item.enabled).map(item => ({ type: 'image', src: item.src, alt: item.alt || item.title })) };
 const reels = content.reels.filter(item => item.enabled).map(item => ({ ...item, kind: 'reel', category: 'Short-form motion', media: [{ type: 'video', src: item.src }] }));
 const animations = content.animations.filter(item => item.enabled).map(item => ({ ...item, kind: 'animation', category: 'Motion exploration', media: [{ type: 'video', src: item.src }] }));
@@ -15,7 +17,7 @@ const dialog = document.querySelector('#work-dialog');
 const mediaContainer = document.querySelector('#dialog-media');
 const closeButton = document.querySelector('#close-dialog');
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-let activeItems = projects, activeIndex = 0, opener = null, savedScroll = 0;
+let activeItems = projects, activeIndex = 0, opener = null, savedScroll = 0, renderRevision = 0;
 const imageDialog = document.querySelector('#image-dialog');
 const previewToggle = document.querySelector('#reel-motion');
 let previewsPaused = reduced.matches || Boolean(navigator.connection?.saveData);
@@ -87,7 +89,7 @@ function setMediaLoading(player, loading) {
   if (loader) loader.hidden = !loading;
 }
 
-projects.forEach((project, index) => {
+projects.forEach(project => {
   const card = element('button', 'project'); card.type = 'button';
   card.setAttribute('aria-haspopup', 'dialog');
   card.setAttribute('aria-label', `View ${project.title}`);
@@ -100,8 +102,24 @@ projects.forEach((project, index) => {
   visual.append(element('span', 'open-project', '↗'));
   const caption = element('div', 'project-caption');
   caption.append(element('h3', '', project.title), element('span', '', project.category));
-  card.append(visual, caption); card.addEventListener('click', () => openItem(projects, index, card)); workRail.append(card);
+  card.dataset.workType = projectType(project);
+  card.append(visual, caption); card.addEventListener('click', () => openItem(filteredProjects, filteredProjects.indexOf(project), card)); workRail.append(card);
 });
+
+const filters = document.querySelector('#work-filters');
+for (const [type, label] of Object.entries({ all: 'All work', ...workTypes })) {
+  if (type !== 'all' && !projects.some(item => projectType(item) === type)) continue;
+  const filter = element('button', '', label); filter.type = 'button'; filter.dataset.type = type;
+  filter.setAttribute('aria-pressed', String(type === 'all'));
+  filter.addEventListener('click', () => {
+    filteredProjects = type === 'all' ? projects : projects.filter(item => projectType(item) === type);
+    workRail.querySelectorAll('.project').forEach(card => { card.hidden = type !== 'all' && card.dataset.workType !== type; });
+    filters.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button === filter)));
+    workRail.scrollLeft = 0; updateRail(workRail);
+  });
+  filters.append(filter);
+}
+filters.hidden = filters.children.length < 3;
 
 Object.entries(collections).forEach(([name, items]) => items.forEach((item, index) => {
   const card = element('button', 'reel-card'); card.type = 'button';
@@ -265,20 +283,20 @@ document.addEventListener('visibilitychange', () => {
 syncPreviews();
 
 function updateRail(rail) {
-  if (!rail.children.length) return;
+  if (!rail.querySelector('.project:not([hidden])')) return;
   const max = Math.max(0, rail.scrollWidth - rail.clientWidth);
   document.querySelector(`[data-rail="${rail.id}"][data-direction="-1"]`).disabled = rail.scrollLeft <= 2;
   document.querySelector(`[data-rail="${rail.id}"][data-direction="1"]`).disabled = rail.scrollLeft >= max - 2;
   if (rail === workRail) {
-    const width = rail.children[0].getBoundingClientRect().width + parseFloat(getComputedStyle(rail).gap);
+    const width = rail.querySelector('.project:not([hidden])').getBoundingClientRect().width + parseFloat(getComputedStyle(rail).gap);
     const first = Math.round(rail.scrollLeft / width) + 1;
     const visible = Math.max(1, Math.round(rail.clientWidth / width));
-    document.querySelector('#work-count').textContent = `${String(first).padStart(2, '0')}—${String(Math.min(projects.length, first + visible - 1)).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}`;
+    document.querySelector('#work-count').textContent = `${String(first).padStart(2, '0')}—${String(Math.min(filteredProjects.length, first + visible - 1)).padStart(2, '0')} / ${String(filteredProjects.length).padStart(2, '0')}`;
   }
 }
 function stepRail(rail, direction) {
-  if (!rail.children.length) return;
-  const width = rail.children[0].getBoundingClientRect().width + parseFloat(getComputedStyle(rail).gap);
+  if (!rail.querySelector('.project:not([hidden])')) return;
+  const width = rail.querySelector('.project:not([hidden])').getBoundingClientRect().width + parseFloat(getComputedStyle(rail).gap);
   rail.scrollBy({ left: direction * width, behavior: reduced.matches ? 'instant' : 'smooth' });
 }
 document.querySelectorAll('[data-rail]').forEach(button => button.addEventListener('click', () => stepRail(document.getElementById(button.dataset.rail), Number(button.dataset.direction))));
@@ -295,13 +313,40 @@ function stopMedia() {
   mediaContainer.querySelectorAll('video').forEach(player => { player.pause(); player.removeAttribute('src'); player.load(); });
 }
 function renderItem() {
+  const revision = ++renderRevision;
   if (imageDialog.open) imageDialog.close();
   stopMedia(); mediaContainer.replaceChildren();
   const item = activeItems[activeIndex], isReel = item.kind === 'reel';
   const isSocial = item.category === 'Social media collection';
   dialog.classList.toggle('reel-dialog', isReel);
   dialog.classList.toggle('collection-dialog', isSocial);
+  const isProject = !item.kind && !isSocial;
+  dialog.classList.toggle('project-dialog', isProject);
   mediaContainer.classList.toggle('social-grid', isSocial);
+  mediaContainer.classList.toggle('project-media-grid', isProject);
+  mediaContainer.dataset.layout = isProject ? projectType(item) : '';
+  const imageEntries = item.media.filter(entry => entry.type === 'image');
+  const imageButtons = new Map();
+  const longLayouts = element('div', 'long-layouts');
+  const ecommerce = isProject && projectType(item) === 'ecommerce';
+  const overview = ecommerce ? element('div', 'ecommerce-overview') : null;
+  const squares = ecommerce ? element('div', 'ecommerce-squares') : null;
+  function updateOverview() {
+    if (!overview) return;
+    overview.style.setProperty('--overview-rows', Math.max(1, Math.ceil(squares.children.length / 3)));
+    overview.classList.toggle('has-long-layout', Boolean(longLayouts.children.length));
+  }
+  if (overview) { overview.append(squares, longLayouts); mediaContainer.append(overview); }
+  const showcase = isProject && ['packaging', 'kv'].includes(projectType(item)) ? element('div', 'project-showcase') : null;
+  const thumbnails = element('div', 'project-thumbnails');
+  let featured = null;
+  function selectArtwork(entry) {
+    if (!showcase) return;
+    featured = entry; showcase.replaceChildren(imageButtons.get(entry));
+    if (!reduced.matches) showcase.animate([{ opacity: .4 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+    thumbnails.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.src === entry.src)));
+  }
+  if (showcase) mediaContainer.append(showcase, thumbnails);
   document.querySelector('#dialog-title').textContent = item.title;
   document.querySelector('#dialog-category').textContent = item.category;
   document.querySelector('#dialog-description').textContent = item.description;
@@ -318,10 +363,45 @@ function renderItem() {
         thumbnail.setAttribute('aria-label', `Enlarge ${entry.alt}`); thumbnail.setAttribute('aria-haspopup', 'dialog');
         thumbnail.append(img, element('span', 'enlarge-mark', '↗'));
         thumbnail.addEventListener('click', () => openImage(item.media, index, thumbnail)); figure.append(thumbnail);
+      } else if (isProject) {
+        const thumbnail = element('button', 'project-artwork'); thumbnail.type = 'button';
+        const caption = entry.alt || `${item.title} — artwork ${imageEntries.indexOf(entry) + 1}`;
+        img.alt = caption;
+        thumbnail.setAttribute('aria-label', `Enlarge ${caption}`); thumbnail.setAttribute('aria-haspopup', 'dialog');
+        thumbnail.append(img, element('span', 'enlarge-mark', '↗'));
+        thumbnail.addEventListener('click', () => openImage(imageEntries, imageEntries.indexOf(entry), thumbnail));
+        figure.append(thumbnail); imageButtons.set(entry, figure);
+        let thumb;
+        if (showcase) {
+          thumb = element('button', 'artwork-thumb'); thumb.type = 'button'; thumb.dataset.src = entry.src;
+          const tiny = element('img'); tiny.src = entry.src; tiny.alt = ''; tiny.loading = 'lazy';
+          thumb.append(tiny); thumb.setAttribute('aria-label', caption); thumb.setAttribute('aria-pressed', 'false');
+          thumb.addEventListener('click', () => selectArtwork(entry)); thumbnails.append(thumb);
+          if (!featured && entry.presentation !== 'long') selectArtwork(entry);
+        }
+        function classifyImage() {
+          if (revision !== renderRevision) return;
+          const isLong = entry.presentation === 'long' || (img.naturalHeight > img.naturalWidth * 2.2);
+          if (!isLong) return;
+          figure.classList.add('long-artwork');
+          thumbnail.classList.add('long-artwork-button');
+          if (!thumbnail.querySelector('.long-label')) thumbnail.append(element('span', 'long-label', 'View full layout ↗'));
+          longLayouts.append(figure); if (!longLayouts.isConnected) mediaContainer.append(longLayouts); updateOverview();
+          thumb?.remove();
+          if (featured === entry) {
+            featured = null;
+            const next = imageEntries.find(other => other !== entry && imageButtons.has(other) && !imageButtons.get(other).classList.contains('long-artwork'));
+            if (next) selectArtwork(next);
+          }
+        }
+        img.addEventListener('load', classifyImage);
+        if (!showcase) { (squares || mediaContainer).append(figure); updateOverview(); }
+        if (entry.presentation === 'long' || img.complete) classifyImage();
+        return;
       } else figure.append(img);
     } else {
       const player = element('video'); player.src = entry.src; player.controls = true; player.playsInline = true; player.preload = isReel || index === 0 ? 'metadata' : 'none';
-      if (index === 0 && activeItems === projects) {
+      if (index === 0 && isProject) {
         player.muted = true; player.defaultMuted = true; player.loop = true;
         player.autoplay = !reduced.matches; player.dataset.reveal = 'true';
       }
@@ -338,6 +418,8 @@ function renderItem() {
     }
     mediaContainer.append(figure);
   });
+  if (longLayouts.children.length && !overview) mediaContainer.append(longLayouts);
+  updateOverview();
   document.querySelector('.dialog-scroll').scrollTop = 0;
 }
 
@@ -353,6 +435,7 @@ let pressedBackdrop = false;
 dialog.addEventListener('pointerdown', e => { pressedBackdrop = e.target === dialog; });
 dialog.addEventListener('click', e => { if (e.target === dialog && pressedBackdrop) dialog.close(); pressedBackdrop = false; });
 dialog.addEventListener('close', () => {
+  renderRevision++;
   stopMedia(); mediaContainer.replaceChildren();
   document.body.classList.remove('dialog-open'); document.body.style.top = '';
   window.scrollTo({ top: savedScroll, behavior: 'instant' }); opener?.focus({ preventScroll: true });
@@ -374,10 +457,22 @@ function startReveal() {
   if (reveal && !reduced.matches) playSafely(reveal);
 }
 
+const imageZoom = document.querySelector('#image-zoom');
+const imageStage = document.querySelector('.image-stage');
+function setImageZoom(zoom) {
+  imageStage.classList.toggle('reading-width', zoom);
+  imageZoom.setAttribute('aria-pressed', String(zoom));
+  imageZoom.textContent = zoom ? 'Fit whole image' : 'View at reading width';
+  imageStage.scrollTop = 0;
+}
+imageZoom.addEventListener('click', () => setImageZoom(!imageStage.classList.contains('reading-width')));
 function renderImage() {
   const entry = expandedImages[expandedIndex];
-  const enlarged = document.querySelector('#enlarged-image'); enlarged.src = entry.src; enlarged.alt = entry.alt;
-  document.querySelector('#image-title').textContent = entry.alt;
+  const enlarged = document.querySelector('#enlarged-image');
+  setImageZoom(entry.presentation === 'long');
+  enlarged.onload = () => { if (enlarged.naturalHeight > enlarged.naturalWidth * 2.2) setImageZoom(true); };
+  enlarged.src = entry.src; enlarged.alt = entry.alt || 'Project artwork';
+  document.querySelector('#image-title').textContent = entry.alt || 'Project artwork';
   document.querySelector('#image-position').textContent = `${expandedIndex + 1} / ${expandedImages.length}`;
   document.querySelector('#previous-image').disabled = expandedIndex === 0;
   document.querySelector('#next-image').disabled = expandedIndex === expandedImages.length - 1;

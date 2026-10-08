@@ -52,8 +52,9 @@
       </section>
       <section class="selected-work" id="selected-work" aria-labelledby="work-title">
         <div class="section-heading"><div><p class="eyebrow">Ideas, made visible</p><h2 id="work-title">Selected projects</h2></div><div class="rail-controls"><span id="work-count" aria-live="polite"></span><button type="button" data-rail="work-rail" data-direction="-1" aria-label="Previous projects">←</button><button type="button" data-rail="work-rail" data-direction="1" aria-label="Next projects">→</button></div></div>
+        <div id="work-filters" class="work-filters" role="group" aria-label="Filter selected work"></div>
         <div class="project-rail" id="work-rail" role="region" aria-label="Selected projects carousel" tabindex="0"></div>
-        <p class="preview-note">From the archive. Brand identities, from the first idea to the final details.</p>
+        <p class="preview-note">Brand identities, e-commerce, packaging and key visuals. Explore a project to see the details.</p>
       </section>
       <section class="reels-section" id="reels" aria-labelledby="reels-title">
         <div class="section-heading"><div><p class="eyebrow">A little movement</p><h2 id="reels-title">Made to move<span class="title-dot">.</span></h2></div><button type="button" id="reel-motion" aria-pressed="false">Pause previews Ⅱ</button></div>
@@ -109,12 +110,13 @@
       <div class="dialog-shell">
         <header class="dialog-header"><span id="dialog-kind"></span><button type="button" id="close-dialog" aria-label="Close project">Close <span aria-hidden="true">×</span></button></header>
         <div class="dialog-scroll"><div class="dialog-heading"><p class="eyebrow" id="dialog-category"></p><h2 id="dialog-title"></h2><p id="dialog-description"></p></div><div id="dialog-media"></div></div>
-        <footer class="dialog-footer"><span id="dialog-position" aria-live="polite"></span><div><button id="previous-item" type="button">← Previous</button><button id="next-item" type="button">Next →</button></div></footer>
+        <footer class="dialog-footer"><span id="dialog-position" aria-live="polite"></span><div><button id="previous-item" type="button">← Previous project</button><button id="next-item" type="button">Next project →</button></div></footer>
       </div>
     </dialog>
     <dialog id="image-dialog" aria-labelledby="image-title">
-      <header><span id="image-title">Social media design</span><button type="button" id="close-image" aria-label="Back to social media grid">Back to grid ×</button></header>
-      <div class="image-stage"><img id="enlarged-image" alt=""></div>
+      <header><span id="image-title">Social media design</span><button type="button" id="close-image" aria-label="Back to project">Back ×</button></header>
+      <button type="button" id="image-zoom" aria-pressed="false">View at reading width</button>
+      <div class="image-stage" tabindex="0" aria-label="Artwork viewer"><img id="enlarged-image" alt=""></div>
       <footer><button type="button" id="previous-image">← Previous</button><span id="image-position" aria-live="polite"></span><button type="button" id="next-image">Next →</button></footer>
     </dialog>
     <script type="module" src="/src/preview/chrome-hero.js"></script>

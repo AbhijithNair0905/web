@@ -1,4 +1,13 @@
 export const groups = ['projects', 'reels', 'animations', 'social', 'logos'];
+export const workTypes = { branding: 'Branding', ecommerce: 'E-commerce', packaging: 'Packaging', kv: 'Key visuals' };
+export function projectType(item) {
+  if (Object.hasOwn(workTypes, item.workType)) return item.workType;
+  const category = (item.category || '').toLowerCase();
+  if (/e-?com/.test(category)) return 'ecommerce';
+  if (/packag/.test(category)) return 'packaging';
+  if (/key visual|^kv$/.test(category)) return 'kv';
+  return 'branding';
+}
 export const placeholders = ['orbit', 'ribbon', 'asterisk', 'arcs', 'rings', 'diamond', 'wave', 'squares'];
 const imageExtensions = /\.(png|jpe?g|webp|gif|avif)$/i;
 const videoExtensions = /\.(mp4|webm)$/i;
@@ -34,13 +43,16 @@ export function validateContent(input) {
       const clean = { id: item.id, enabled: item.enabled, title: text(item.title, `${label} title`, 160) };
       if (!clean.title) fail(`${label}: add a title.`);
       if (group === 'projects') {
+        if (item.workType !== undefined && !Object.hasOwn(workTypes, item.workType)) fail(`${label}: choose a supported work type.`);
+        clean.workType = projectType(item);
         clean.category = text(item.category, `${label} category`, 100);
         clean.description = text(item.description, `${label} description`, 4000);
         clean.cover = mediaUrl(item.cover, 'image', `${label} cover`, item.enabled);
         if (!Array.isArray(item.media) || item.media.length > 80 || (item.enabled && !item.media.length)) fail(`${label}: add 1–80 images or videos to the project.`);
         clean.media = item.media.map((entry, i) => {
           if (!entry || !['image', 'video'].includes(entry.type)) fail(`${label}, media ${i + 1}: choose image or video.`);
-          return { type: entry.type, src: mediaUrl(entry.src, entry.type, `${label}, media ${i + 1}`, item.enabled), ...(entry.type === 'image' ? { alt: text(entry.alt ?? '', `${label} image description`) } : {}) };
+          if (entry.presentation !== undefined && !['auto', 'long'].includes(entry.presentation)) fail(`${label}: choose automatic or long-layout display.`);
+          return { type: entry.type, src: mediaUrl(entry.src, entry.type, `${label}, media ${i + 1}`, item.enabled), ...(entry.type === 'image' ? { alt: text(entry.alt ?? '', `${label} image description`), presentation: entry.presentation || 'auto' } : {}) };
         });
       } else if (group === 'reels' || group === 'animations') {
         clean.description = text(item.description, `${label} description`, 4000);
