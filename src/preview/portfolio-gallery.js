@@ -335,6 +335,7 @@ function renderItem() {
     if (!overview) return;
     overview.style.setProperty('--overview-rows', Math.max(1, Math.ceil(squares.children.length / 3)));
     overview.classList.toggle('has-long-layout', Boolean(longLayouts.children.length));
+
   }
   if (overview) { overview.append(squares, longLayouts); mediaContainer.append(overview); }
   const showcase = isProject && ['packaging', 'kv'].includes(projectType(item)) ? element('div', 'project-showcase') : null;
