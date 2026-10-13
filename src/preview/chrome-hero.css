@@ -120,3 +120,28 @@ body.dialog-open{position:fixed;width:100%;overflow:hidden}#work-dialog{padding:
 .ecommerce-overview .long-label{height:52px;display:flex;align-items:flex-end;justify-content:center;padding:10px 5px;font-size:11px;line-height:1.2;border:0;background:linear-gradient(transparent,rgba(12,12,16,.94) 60%)}
 @media(max-width:650px){.ecommerce-overview.has-long-layout{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:8px}.ecommerce-overview .long-label{font-size:10px;padding:9px 4px}}
 @media(min-width:651px) and (max-height:720px){#work-dialog.project-dialog{height:96dvh}.project-dialog .dialog-header{padding:6px 24px}.project-dialog .dialog-heading{padding:12px 30px}.project-dialog .dialog-heading .eyebrow{margin-bottom:7px}.project-dialog .dialog-heading h2{font-size:28px;margin-bottom:6px}.project-dialog .dialog-heading>p:last-child{font-size:11px;line-height:1.5}.project-dialog #dialog-media{padding-bottom:16px}.project-dialog .dialog-footer{padding-block:7px}}
+
+/* Floating design companion: the controls stay separate from the canvas. */
+.sculpture-wrap{top:-2%;height:94%}
+#sculpture{height:calc(100% - 70px);cursor:pointer}
+#sculpture:active{cursor:pointer}
+.sculpture-controls{bottom:43px;left:12%;right:12%}
+.avatar-actions{position:absolute;bottom:10px;left:8%;right:8%;display:flex;justify-content:center;gap:7px;z-index:2}
+.avatar-actions button{border:1px solid #343438;border-radius:20px;background:#141416;color:#bdbdc4;font:inherit;font-size:10px;padding:9px 12px;min-height:36px;cursor:pointer}
+.avatar-actions button:hover,.avatar-actions button:focus-visible{background:#29292d;color:#fff;border-color:#727279}
+.avatar-actions button:disabled{opacity:.4;cursor:default}
+#avatar-message:not(.sr-only){position:relative;margin:5px auto 0;width:90%;text-align:center;color:#d9c6ac;font-size:12px;line-height:1.5;overflow-wrap:anywhere;z-index:3;background:#080808}
+.sculpture-fallback.device-fallback{inset:auto;left:50%;top:48%;width:220px;height:330px;border:3px solid #aaa8a0;border-radius:27px;background:linear-gradient(125deg,#dddcd3,#9a9b9a 60%,#c2c2bc);box-shadow:-12px 5px 0 #393c3e,0 18px 60px #0007;transform:translate(-50%,-50%) rotate(7deg);padding:17px}
+.device-fallback-screen{height:145px;background:#0c0e0f;border:3px solid #303233;border-radius:15px;overflow:hidden;display:flex;align-items:center}
+#sculpture .device-fallback-screen canvas{width:100%;height:auto;position:static}
+.device-fallback-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:130px;margin-top:15px}
+.device-fallback-buttons i{height:55px;display:grid;place-items:center;background:#292c2d;color:#bbb;border-radius:12px;box-shadow:0 2px 2px #0008;font-style:normal;font-size:24px}
+.device-fallback-buttons i:nth-child(2){background:#d74820;color:#ffe4bf}.device-fallback>span{position:absolute;right:16px;bottom:24px;font-size:13px;color:#444}
+@media(max-width:600px){.sculpture-wrap{height:475px;margin:4px -18px 28px;top:auto}#sculpture{height:390px}.sculpture-controls{bottom:44px;left:8%;right:8%}.avatar-actions{bottom:0;left:3%;right:3%}.avatar-actions button{min-height:44px;padding:10px 12px}#avatar-message:not(.sr-only){margin-top:84px}}
+/* Full announcements stay in normal flow when motion is paused. */
+.sculpture-controls{position:relative;bottom:auto;left:auto;right:auto;width:76%;margin:0 auto;min-height:34px}
+.avatar-actions{position:relative;bottom:auto;left:auto;right:auto;margin:0 auto;width:94%}
+#avatar-message:not(.sr-only){margin:8px auto 0;max-width:420px}
+.sculpture-wrap:has(#avatar-message:not([hidden]):not(.sr-only)) #sculpture{height:calc(100% - 140px)}
+@media(max-width:600px){.sculpture-wrap{height:auto;min-height:475px}.sculpture-controls{width:84%;min-height:40px}.sculpture-wrap:has(#avatar-message:not([hidden]):not(.sr-only)) #sculpture{height:390px}}
+#sculpture > canvas[hidden]{display:none}

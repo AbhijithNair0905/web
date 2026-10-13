@@ -1,156 +1,135 @@
 import * as THREE from 'three';
+import { createDevice } from './avatar-device.js';
+import { avatarDefaults, avatarExpressions, createFaceDisplay } from './avatar-display.js';
+import { loadContent } from './content-store.js';
 
 const host = document.querySelector('#sculpture');
 const toggle = document.querySelector('#motion-toggle');
 const status = document.querySelector('#render-status');
-let paused = false;
-let cleanup = () => {};
-
-function updateButton() {
-  document.documentElement.dataset.heroMotion = paused ? 'paused' : 'playing';
-  toggle.setAttribute('aria-pressed', String(paused));
-  toggle.innerHTML = paused ? 'Resume motion <span aria-hidden="true">▷</span>' : 'Pause motion <span aria-hidden="true">Ⅱ</span>';
+const caption = document.querySelector('#avatar-message');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const mobile = matchMedia('(max-width: 600px)');
+const face = createFaceDisplay();
+let settings = {...avatarDefaults}, paused = reduced.matches, destroyed = false, cleanup = () => {}, wake = () => {}, changeExpression = () => {};
+let fallback = true;
+const fallbackScreen = document.querySelector('.device-fallback-screen'); fallbackScreen.append(face.canvas);
+const expressionControls = document.querySelector('.avatar-actions');
+for(const [name,label] of Object.entries(avatarExpressions).filter(([name])=>name!=='neutral')) {
+  const button = document.createElement('button'); button.type='button';button.textContent=label;button.dataset.expression=name;
+  button.addEventListener('click',()=>changeExpression(name));expressionControls.append(button);
 }
+function syncSettings() {
+  const hasMessage=settings.mode!=='expressions' && Boolean(settings.message);
+  caption.textContent=hasMessage?settings.message:'';
+  caption.hidden=!hasMessage;
+  caption.classList.toggle('sr-only',!fallback && !paused);
+  expressionControls.querySelectorAll('button').forEach(b=>{b.disabled=settings.mode==='message';});
+  host.setAttribute('aria-label',hasMessage ? `Design companion. ${settings.message}` : 'Floating design companion. Tap its buttons, or use the expression controls below.');
+  face.draw(settings,0,{x:0,y:0},'',true);
+  wake();
+}
+function updateButton() {
+  document.documentElement.dataset.heroMotion=paused?'paused':'playing';
+  toggle.setAttribute('aria-pressed',String(paused));toggle.textContent=paused?'Resume motion ▷':'Pause motion Ⅱ';
+  syncSettings();
+}
+function ready() {window.dispatchEvent(new Event('portfolio:hero-ready'));}
+loadContent().then(content=>{if(!destroyed){settings=content.avatar || {...avatarDefaults};syncSettings();}});
 updateButton();
 
-// A broad, elliptical ribbon sweeps along a closed trefoil curve.
-// The moving frame gives the metal a sculptural fold, without a downloaded model.
-class RibbonPath extends THREE.Curve {
-  getPoint(t, target = new THREE.Vector3()) {
-    const a = t * Math.PI * 2;
-    return target.set((1.05 + .32 * Math.cos(3 * a)) * Math.cos(2 * a),
-      (1.05 + .32 * Math.cos(3 * a)) * Math.sin(2 * a), .48 * Math.sin(3 * a));
-  }
-}
-
-function ribbonGeometry() {
-  const path = new RibbonPath();
-  const steps = 360, sides = 16;
-  const frames = path.computeFrenetFrames(steps, true);
-  const positions = [], indices = [];
-  for (let i = 0; i <= steps; i++) {
-    const t = i / steps, point = path.getPointAt(t);
-    const twist = Math.sin(t * Math.PI * 6) * .68 + .3;
-    const normal = frames.normals[i].clone().applyAxisAngle(frames.tangents[i], twist);
-    const binormal = new THREE.Vector3().crossVectors(frames.tangents[i], normal);
-    const width = .28 + .13 * (Math.sin(t * Math.PI * 6 + .8) * .5 + .5);
-    for (let j = 0; j <= sides; j++) {
-      const angle = j / sides * Math.PI * 2;
-      const v = point.clone().addScaledVector(normal, Math.cos(angle) * width)
-        .addScaledVector(binormal, Math.sin(angle) * .034);
-      positions.push(v.x, v.y, v.z);
-      if (i < steps && j < sides) {
-        const k = i * (sides + 1) + j;
-        indices.push(k, k + 1, k + sides + 1, k + 1, k + sides + 2, k + sides + 1);
-      }
-    }
-  }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  geometry.setIndex(indices);
-  geometry.computeVertexNormals();
-  return geometry;
-}
-
 try {
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-  renderer.setClearColor(0x080808, 0);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
-  host.appendChild(renderer.domElement);
-  renderer.domElement.setAttribute('aria-hidden', 'true');
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(36, 1, .1, 50);
-  camera.position.set(0, 0, 6.1);
-
-  // Locally generated studio reflections: broad white softboxes and tiny cool/warm strips.
-  const studio = new THREE.Scene();
-  studio.background = new THREE.Color('#121216');
-  function softbox(color, intensity, position, scale) {
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(...scale), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(intensity), side: THREE.DoubleSide }));
-    mesh.position.set(...position); mesh.lookAt(0, 0, 0); studio.add(mesh);
+  const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});
+  renderer.setClearColor(0x080808,0);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+  host.append(renderer.domElement);renderer.domElement.setAttribute('aria-hidden','true');
+  cleanup=()=>{renderer.dispose();renderer.domElement.remove();};
+  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(36,1,.1,30);camera.position.set(0,0,7.2);
+  const studio=new THREE.Scene();studio.background=new THREE.Color('#28282b');
+  for(const [color,intensity,position,size] of [['#ffffff',4,[-3,3,3],[3,5]],['#f4f2e9',3,[3,1,2],[1.3,6]],['#ffffff',3,[0,-4,-1],[5,1.5]],['#809ccc',1.2,[-3,0,-3],[.45,5]]]) {
+    const box=new THREE.Mesh(new THREE.PlaneGeometry(...size),new THREE.MeshBasicMaterial({color:new THREE.Color(color).multiplyScalar(intensity),side:THREE.DoubleSide}));box.position.set(...position);box.lookAt(0,0,0);studio.add(box);
   }
-  softbox('#ffffff', 5, [-3, 3, 3], [3, 5]);
-  softbox('#f4f2e9', 3.5, [3, 1, 2], [1.3, 6]);
-  softbox('#ffffff', 4, [0, -4, -1], [5, 1.5]);
-  softbox('#809ccc', 2, [-3, 0, -3], [.45, 5]);
-  softbox('#ddbb88', 1.5, [4, -2, -2], [.3, 4]);
-  softbox('#ffffff', 2, [0, 4, -3], [5, 1]);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const environment = pmrem.fromScene(studio, .035);
-  scene.environment = environment.texture;
-  studio.traverse(o => { o.geometry?.dispose(); o.material?.dispose(); });
-  pmrem.dispose();
-  const material = new THREE.MeshPhysicalMaterial({ color: '#c9cbd1', metalness: 1, roughness: .19, envMapIntensity: 1.2, clearcoat: 1, clearcoatRoughness: .16, iridescence: .28, iridescenceIOR: 1.35, iridescenceThicknessRange: [180, 360] });
-  const ribbon = new THREE.Mesh(ribbonGeometry(), material);
-  const group = new THREE.Group(); group.add(ribbon); scene.add(group);
-  ribbon.rotation.set(.18, -.25, -.38);
-  const pointer = new THREE.Vector2();
-  const drag = new THREE.Vector2();
-  let scroll = 0, idle = 0, lastTime = 0, request = 0, visible = true;
-  let dragging = false, lastX = 0, lastY = 0, firstFrame = true;
-  const listen = (target, event, handler, options) => {
-    target.addEventListener(event, handler, options);
-    removers.push(() => target.removeEventListener(event, handler, options));
-  };
-  const removers = [];
-  function render(time = 0) {
-    request = 0;
-    const dt = Math.min((time - lastTime) / 1000 || .016, .05); lastTime = time;
-    const moving = !paused;
-    if (moving) idle += dt;
-    const damping = 1 - Math.exp(-dt * 5);
-    const targetX = drag.y + (moving ? pointer.y * .16 + Math.sin(idle * .3) * .07 : 0);
-    const targetY = drag.x + (moving ? pointer.x * .26 + idle * .075 + scroll * .5 : 0);
-    group.rotation.x = THREE.MathUtils.lerp(group.rotation.x, targetX, damping);
-    group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, targetY, damping);
-    group.rotation.z = THREE.MathUtils.lerp(group.rotation.z, moving ? Math.sin(idle * .22) * .06 : 0, damping);
-    group.position.y = moving ? Math.sin(idle * .65) * .035 + scroll * .28 : 0;
-    renderer.render(scene, camera);
-    if (firstFrame) { firstFrame = false; window.dispatchEvent(new Event('portfolio:hero-ready')); }
-    if (visible && !document.hidden && (moving || Math.abs(group.rotation.x - targetX) + Math.abs(group.rotation.y - targetY) > .001)) request = requestAnimationFrame(render);
+  const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(studio,.04);scene.environment=environment.texture;
+  studio.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});pmrem.dispose();
+  scene.add(new THREE.HemisphereLight('#fff3de','#242834',1.8));
+  const light=new THREE.DirectionalLight('#ffffff',2.8);light.position.set(-3,4,5);scene.add(light);
+  const device=createDevice(face.canvas);scene.add(device.group);
+  cleanup=()=>{device.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};device.group.rotation.set(.10,-.29,.09);
+  const gaze={x:0,y:0},target={x:0,y:0},ray=new THREE.Raycaster(),pointer=new THREE.Vector2();
+  let request=0,last=0,elapsed=0,lastPaint=-1,visible=true,lost=false,override='',expires=0,lastPointer=-10,pointerDown=null,pressed=null,bounce=0,first=true,force=true;
+  const removers=[];
+  const listen=(node,event,fn,options)=>{node.addEventListener(event,fn,options);removers.push(()=>node.removeEventListener(event,fn,options));};
+  function stop(){cancelAnimationFrame(request);request=0;}
+  function render(now) {
+    request=0;
+    if(lost || !visible || document.hidden)return;
+    const dt=Math.min((now-last)/1000||.033,.06);
+    if(!force && dt<1/30-.002){request=requestAnimationFrame(render);return;}
+    last=now;force=false;
+    if(!paused)elapsed+=dt;
+    if(override && !paused && elapsed>expires){override='';host.dataset.expression=settings.expression;}
+    const still=paused;
+    if(!still) {
+      const idle=elapsed-lastPointer>3;
+      const tx=idle?Math.sin(elapsed*.38)*.33:target.x,ty=idle?Math.sin(elapsed*.3)*.12:target.y;
+      gaze.x=THREE.MathUtils.lerp(gaze.x,tx,Math.min(1,dt*7));gaze.y=THREE.MathUtils.lerp(gaze.y,ty,Math.min(1,dt*7));
+      device.group.rotation.x=THREE.MathUtils.lerp(device.group.rotation.x,.1+gaze.y*.08,dt*5);
+      device.group.rotation.y=THREE.MathUtils.lerp(device.group.rotation.y,-.29+gaze.x*.14,dt*5);
+      device.group.rotation.z=.07+Math.sin(elapsed*.55)*.018 + (override==='giggling'?Math.sin(elapsed*16)*.008:0);
+      device.group.position.y=Math.sin(elapsed*.85)*.055 + (bounce>elapsed ? Math.sin((bounce-elapsed)*15)*.045 : 0);
+    }
+    if(elapsed-lastPaint>=1/24 || still || lastPaint<0) {
+      const display=face.draw(settings,elapsed,gaze,override,still);lastPaint=elapsed;device.screenTexture.needsUpdate=true;
+      host.dataset.display=display.message?'message':'expression';
+    }
+    for(const button of device.buttons)button.root.position.z=button.rest+(button.name===pressed && elapsed<bounce?-.025:0);
+    renderer.render(scene,camera);
+    if(first){first=false;ready();}
+    if(!paused)request=requestAnimationFrame(render);
   }
-  function wake() { if (!request && visible && !document.hidden) { lastTime = performance.now(); request = requestAnimationFrame(render); } }
-  function resize() {
-    const { width, height } = host.getBoundingClientRect();
-    renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
-    group.scale.setScalar(width < 450 ? .9 : 1);
+  wake=(immediate=true)=>{if(immediate){force=true;lastPaint=-1;}if(!request && visible && !document.hidden && !lost){last=performance.now();request=requestAnimationFrame(render);}};
+  function choose(name) {
+    if(settings.mode==='message')return;
+    override=name;expires=elapsed+4;pressed=name;bounce=elapsed+.55;
+    host.dataset.expression=name;status.textContent=`${avatarExpressions[name]||'Surprised'} expression`;
     wake();
   }
-  const observer = new ResizeObserver(resize); observer.observe(host);
-  const visibility = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) wake(); else { cancelAnimationFrame(request); request = 0; } });
-  visibility.observe(host);
-  listen(document.querySelector('.hero'), 'pointermove', e => {
-    if (e.pointerType !== 'mouse') return;
-    const rect = host.getBoundingClientRect();
-    pointer.set(THREE.MathUtils.clamp((e.clientX - rect.left) / rect.width * 2 - 1, -1, 1), THREE.MathUtils.clamp((e.clientY - rect.top) / rect.height * 2 - 1, -1, 1)); wake();
+  changeExpression=choose;
+  function resize(){
+    const {width,height}=host.getBoundingClientRect();if(!width || !height)return;
+    renderer.setPixelRatio(Math.min(devicePixelRatio,mobile.matches?1.25:1.5));renderer.setSize(width,height);
+    camera.aspect=width/height;camera.updateProjectionMatrix();
+    device.group.scale.setScalar(Math.min(1, camera.aspect*1.48));wake();
+  }
+  const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(host);
+  const visibility=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)wake();else stop();});visibility.observe(host);
+  function look(e){const rect=host.getBoundingClientRect();target.x=THREE.MathUtils.clamp((e.clientX-rect.left)/rect.width*2-1,-1,1);target.y=THREE.MathUtils.clamp((e.clientY-rect.top)/rect.height*2-1,-1,1);lastPointer=elapsed;if(!paused)wake(false);}
+  listen(document.querySelector('.hero'),'pointermove',e=>{if(e.pointerType==='mouse')look(e);},{passive:true});
+  listen(host,'pointerdown',e=>{if(e.button===0){pointerDown={x:e.clientX,y:e.clientY};look(e);}},{passive:true});
+  listen(host,'pointercancel',()=>{pointerDown=null;});
+  listen(host,'pointerup',e=>{
+    if(!pointerDown)return;const distance=Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y);pointerDown=null;if(distance>9)return;
+    const rect=host.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);
+    ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(device.group.children,true)[0];
+    if(hit)choose(hit.object.userData.expression||'surprised');
   });
-  listen(document.querySelector('.hero'), 'pointerleave', () => { pointer.set(0, 0); wake(); });
-  listen(host, 'pointerdown', e => { if (e.button !== 0) return; dragging = true; lastX = e.clientX; lastY = e.clientY; host.setPointerCapture(e.pointerId); });
-  listen(host, 'pointermove', e => { if (!dragging) return; drag.x += (e.clientX - lastX) * .007; drag.y += (e.clientY - lastY) * .007; lastX = e.clientX; lastY = e.clientY; wake(); });
-  const endDrag = () => { dragging = false; };
-  listen(host, 'pointerup', endDrag); listen(host, 'pointercancel', endDrag); listen(host, 'lostpointercapture', endDrag);
-  listen(host, 'keydown', e => {
-    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home'].includes(e.key)) return;
-    e.preventDefault();
-    if (e.key === 'Home') { drag.set(0, 0); idle = 0; }
-    else { drag.x += e.key === 'ArrowLeft' ? -.15 : e.key === 'ArrowRight' ? .15 : 0; drag.y += e.key === 'ArrowUp' ? -.15 : e.key === 'ArrowDown' ? .15 : 0; }
-    wake();
-  });
-  listen(window, 'scroll', () => { scroll = Math.min(window.scrollY / window.innerHeight, 1); wake(); }, { passive: true });
-  listen(document, 'visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(request); request = 0; } else wake(); });
-  listen(toggle, 'click', () => { paused = !paused; updateButton(); wake(); });
-  listen(renderer.domElement, 'webglcontextlost', e => { e.preventDefault(); cancelAnimationFrame(request); request = 0; host.classList.remove('webgl-ready'); renderer.domElement.style.display = 'none'; status.textContent = 'Static sculpture shown. Reload to restore the interactive view.'; });
-  host.classList.add('webgl-ready');
-  resize();
-  cleanup = () => { cancelAnimationFrame(request); observer.disconnect(); visibility.disconnect(); removers.forEach(fn => fn()); ribbon.geometry.dispose(); material.dispose(); environment.dispose(); renderer.dispose(); renderer.domElement.remove(); };
-} catch (error) {
-  console.warn('Chrome study: static fallback', error);
-  toggle.hidden = true;
-  document.querySelector('.interaction-hint').textContent = 'Chrome / form study';
-  status.textContent = 'A static sculpture is shown because interactive graphics are unavailable.';
-  window.dispatchEvent(new Event('portfolio:hero-ready'));
+  listen(host,'keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose('surprised');}});
+  listen(document,'visibilitychange',()=>{if(document.hidden)stop();else wake();});
+  listen(toggle,'click',()=>{paused=!paused;updateButton();wake();});
+  listen(reduced,'change',()=>{paused=reduced.matches;updateButton();wake();});
+  function showFallback(){
+    lost=true;stop();fallback=true;host.classList.remove('webgl-ready');renderer.domElement.hidden=true;
+    toggle.hidden=true;document.querySelector('.interaction-hint').textContent='Static companion · try an expression';status.textContent='Static companion shown to keep the page responsive.';
+    changeExpression=name=>{if(settings.mode!=='message'){face.draw(settings,0,{x:0,y:0},name,true);status.textContent=`${avatarExpressions[name]||name} expression`;}};
+    syncSettings();ready();
+  }
+  listen(renderer.domElement,'webglcontextlost',event=>{event.preventDefault();showFallback();});
+  host.classList.add('webgl-ready');fallback=false;syncSettings();resize();
+  cleanup=()=>{stop();resizeObserver.disconnect();visibility.disconnect();removers.forEach(fn=>fn());device.dispose();environment.dispose();renderer.dispose();renderer.domElement.remove();};
+} catch(error) {
+  cleanup();
+  console.warn('Using static design companion:',error.message);
+  document.querySelector('.interaction-hint').textContent='Static companion · try an expression';
+  toggle.hidden=true;fallback=true;host.classList.remove('webgl-ready');host.querySelectorAll('canvas:not(.device-fallback-screen canvas)').forEach(c=>c.remove());
+  changeExpression=name=>{if(settings.mode!=='message'){face.draw(settings,0,{x:0,y:0},name,true);status.textContent=`${avatarExpressions[name]} expression`;}};
+  syncSettings();ready();
 }
-
-if (import.meta.hot) import.meta.hot.dispose(() => cleanup());
+if(import.meta.hot)import.meta.hot.dispose(()=>{destroyed=true;cleanup();});

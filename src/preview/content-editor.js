@@ -1,3 +1,4 @@
+import { avatarModes, avatarExpressions, createFaceDisplay } from './avatar-display.js';
 import { groups, validateContent, workTypes, projectType } from './content-schema.js';
 import { cloudConfigured } from './cloud-config.js';
 import { cloud, ownerSession, loadCloudDraft, saveCloudDraft, uploadCloudFile, previewCloudAsset, clearCloudPreviews, publishCloudDraft } from './cloud-studio.js';
@@ -12,10 +13,10 @@ const guides = {
 };
 const $ = selector => document.querySelector(selector);
 const online = cloudConfigured || new URLSearchParams(location.search).has('online');
-let doc, revision, token, selectedGroup = 'projects', selectedId, dirty = false, busy = false, connected = false, publishedRevision = -1, recovering = false, authEpoch = 0;
+let doc, revision, token, selectedGroup = new URLSearchParams(location.search).get('section') === 'avatar' ? 'avatar' : 'projects', selectedId, dirty = false, busy = false, connected = false, publishedRevision = -1, recovering = false, authEpoch = 0;
 const make = (tag, className, text) => { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
 const button = (text, handler, className = 'secondary') => { const node = make('button', className, text); node.type = 'button'; node.addEventListener('click', handler); return node; };
-const selected = () => doc?.[selectedGroup].find(item => item.id === selectedId);
+const selected = () => doc?.[selectedGroup]?.find(item => item.id === selectedId);
 function message(text, isError = false) { $('#studio-status').textContent = text; $('#studio-status').dataset.error = String(isError); }
 function syncState() {
   $('#save-content').disabled = !connected || !dirty || busy;
@@ -48,6 +49,7 @@ function choice(labelText, value, options, onChange, help) {
   select.addEventListener('change', () => { onChange(select.value); change(); });
   label.append(select); if (help) label.append(make('small', '', help)); return label;
 }
+let stopAvatarPreview = () => {};
 function renderNavigation() {
   const navigation = $('#collection-navigation'); navigation.replaceChildren();
   for (const name of groups) {
@@ -58,6 +60,32 @@ function renderNavigation() {
     tab.setAttribute('aria-current', String(name === selectedGroup));
     tab.append(make('span', '', String(doc[name].length))); navigation.append(tab);
   }
+}
+function renderAvatar() {
+  $('#collection-title').textContent = 'Avatar';
+  $('#collection-count').textContent = 'Your design companion';
+  $('#size-guide').replaceChildren(make('strong', '', 'A little personality, on your terms.'), make('p', '', 'Choose expressions, a scrolling announcement, or alternate between the two. Messages are limited to 160 characters.'), make('p', '', online ? 'Save your draft, then publish to update the device on your website.' : 'Save changes, then refresh View website to try this message in the local preview.'));
+  const preview = createFaceDisplay(), list = $('#item-list'); list.replaceChildren(preview.canvas);
+  preview.canvas.className = 'avatar-studio-preview'; preview.canvas.setAttribute('role', 'img'); preview.canvas.setAttribute('aria-label', 'Device screen preview');
+  const readout = make('p', 'asset-help'); list.append(readout);
+  $('#empty-detail').hidden = true; $('#item-form').hidden = false;
+  $('#detail-title').textContent = 'Display & personality'; $('#item-state').textContent = 'Homepage';
+  const fields = $('#editing-fields'); fields.replaceChildren();
+  fields.append(choice('Display mode', doc.avatar.mode, avatarModes, value => { doc.avatar.mode = value; }, 'Message only keeps your announcement on screen when visitors tap the device.'));
+  fields.append(field('Screen message', doc.avatar.message, value => { doc.avatar.message = value; }, { max: 160, multiline: true, placeholder: 'More work is being added soon.', help: 'Text only. Visitors who pause motion can read the full message beneath the device.' }));
+  fields.append(choice('Scroll speed', doc.avatar.speed, { slow: 'Slow', normal: 'Normal' }, value => { doc.avatar.speed = value; }));
+  fields.append(choice('Default expression', doc.avatar.expression, avatarExpressions, value => { doc.avatar.expression = value; }));
+  let raf = 0, last = 0, elapsed = 0, active = true, stopped = false;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const paint = () => { preview.draw(doc.avatar, elapsed, {x:0,y:0}, '', reduced.matches); readout.textContent = doc.avatar.mode === 'expressions' ? 'Tap the device buttons on your website to try its expressions.' : doc.avatar.message || 'Type a message to preview it here.'; };
+  const tick = now => { raf = 0; if(stopped || document.hidden || !active || reduced.matches)return; if(now-last>=1000/24){elapsed+=Math.min((now-last)/1000,.1);last=now;paint();} raf=requestAnimationFrame(tick); };
+  const start = () => { if(!raf && !stopped && active && !document.hidden && !reduced.matches){last=performance.now();raf=requestAnimationFrame(tick);} };
+  const onEdit = () => { elapsed = 0; paint(); };
+  const onVisibility = () => { if(document.hidden || reduced.matches){cancelAnimationFrame(raf);raf=0;}else start(); };
+  const observer = new IntersectionObserver(([entry]) => { active=entry.isIntersecting;if(active)start();else {cancelAnimationFrame(raf);raf=0;} }); observer.observe(preview.canvas);
+  fields.addEventListener('input',onEdit); fields.addEventListener('change',onEdit);document.addEventListener('visibilitychange',onVisibility);reduced.addEventListener('change',onVisibility);
+  paint();start();
+  stopAvatarPreview = () => { stopped=true;cancelAnimationFrame(raf);observer.disconnect();fields.removeEventListener('input',onEdit);fields.removeEventListener('change',onEdit);document.removeEventListener('visibilitychange',onVisibility);reduced.removeEventListener('change',onVisibility); };
 }
 function thumbSource(item) { return selectedGroup === 'projects' ? item.cover : ['reels', 'animations'].includes(selectedGroup) ? item.poster : item.src; }
 function setPreviewSource(media, src) {
@@ -205,7 +233,13 @@ function renderDetail() {
   }, 'remove-item')); fields.append(actions); fields.disabled = busy;
 }
 function render() {
-  renderNavigation(); $('#collection-title').textContent = labels[selectedGroup];
+  stopAvatarPreview(); stopAvatarPreview = () => {};
+  renderNavigation();
+  const avatarTab = button('Avatar', () => { if(busy)return;selectedGroup='avatar';render(); }, '');
+  avatarTab.setAttribute('aria-current', String(selectedGroup === 'avatar')); $('#collection-navigation').append(avatarTab);
+  $('#add-item').hidden = selectedGroup === 'avatar';
+  if(selectedGroup === 'avatar') { renderAvatar();syncState();return; }
+   $('#collection-title').textContent = labels[selectedGroup];
   const guide = $('#size-guide'); guide.replaceChildren(make('strong', '', guides[selectedGroup][0]), ...guides[selectedGroup].slice(1).map(text => make('p', '', text)));
   renderList(); renderDetail(); syncState();
 }
@@ -248,7 +282,7 @@ $('#import-content').addEventListener('change', async event => {
     if (file.size > 2 * 1024 * 1024) throw new Error('Choose a content backup under 2 MB.');
     const restored = validateContent(JSON.parse(await file.text()));
     if (!window.confirm(`Replace the current editor draft with this backup? Nothing changes on the website until you ${online ? 'publish' : 'save'}.`)) return;
-    doc = restored; selectedId = doc[selectedGroup][0]?.id; change(); render(); message('Backup loaded as a draft. Review it, then save.');
+    doc = restored; selectedId = doc[selectedGroup]?.[0]?.id; change(); render(); message('Backup loaded as a draft. Review it, then save.');
   } catch (error) { message(error.message, true); }
   finally { event.target.value = ''; }
 });
@@ -270,7 +304,7 @@ async function connect() {
     }
     if (epoch !== authEpoch) return;
     doc = validateContent(result.content); revision = result.revision; token = result.token;
-    selectedId = doc[selectedGroup][0]?.id; connected = true; dirty = false;
+    selectedId = doc[selectedGroup]?.[0]?.id; connected = true; dirty = false;
     $('#studio-login').hidden = true; $('#connection-error').hidden = true; $('#studio-layout').hidden = false;
     $('#seed-content').hidden = !online || revision !== 0;
     render();
@@ -283,6 +317,7 @@ async function connect() {
 }
 $('#retry-connection').addEventListener('click', connect);
 function showLogin(text = '') {
+  stopAvatarPreview();
   connected = false; $('#studio-layout').hidden = true; $('#connection-error').hidden = true; $('#studio-login').hidden = false;
   $('#login-form').hidden = recovering; $('#password-form').hidden = !recovering;
   $('#login-fields').disabled = !cloudConfigured;
@@ -338,7 +373,7 @@ $('#password-form').addEventListener('submit', async event => {
 });
 $('#seed-content').addEventListener('click', async () => {
   if (busy || !confirm('Load the current portfolio into your draft? It will not change the public site until you publish.')) return;
-  try { const response = await fetch('/portfolio-content.json'); if (!response.ok) throw new Error('Could not load the current portfolio.'); doc = validateContent(await response.json()); selectedId = doc[selectedGroup][0]?.id; change(); render(); message('Current portfolio loaded. Save the draft to keep it online.'); }
+  try { const response = await fetch('/portfolio-content.json'); if (!response.ok) throw new Error('Could not load the current portfolio.'); doc = validateContent(await response.json()); selectedId = doc[selectedGroup]?.[0]?.id; change(); render(); message('Current portfolio loaded. Save the draft to keep it online.'); }
   catch (error) { message(error.message, true); }
 });
 $('#publish-content').addEventListener('click', async () => {
@@ -353,7 +388,7 @@ if (cloud) cloud.auth.onAuthStateChange((event) => {
   // Supabase auth callbacks stay synchronous; follow-up requests happen outside the lock.
   if (event === 'PASSWORD_RECOVERY') { recovering = true; setTimeout(() => showLogin('Choose a new password.'), 0); }
   if (event === 'SIGNED_OUT') {
-    authEpoch++; doc = undefined; dirty = false; connected = false; clearCloudPreviews();
+    stopAvatarPreview(); authEpoch++; doc = undefined; dirty = false; connected = false; clearCloudPreviews();
     $('#editing-fields').replaceChildren(); $('#item-list').replaceChildren();
     setTimeout(() => showLogin('Signed out.'), 0);
   }

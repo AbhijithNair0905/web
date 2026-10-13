@@ -1,3 +1,4 @@
+import { validateAvatar } from './avatar-display.js';
 export const groups = ['projects', 'reels', 'animations', 'social', 'logos'];
 export const workTypes = { branding: 'Branding', ecommerce: 'E-commerce', packaging: 'Packaging', kv: 'Key visuals' };
 export function projectType(item) {
@@ -30,7 +31,7 @@ export function mediaUrl(value, type, label, required = true) {
 }
 export function validateContent(input) {
   if (!input || input.version !== 1) fail('This file is not a supported portfolio content backup.');
-  const result = { version: 1 };
+  const result = { version: 1, avatar: validateAvatar(input.avatar) };
   for (const group of groups) {
     if (!Array.isArray(input[group]) || input[group].length > 250) fail(`${group}: use a collection of up to 250 items.`);
     const ids = new Set();

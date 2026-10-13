@@ -44,6 +44,8 @@ export async function previewCloudAsset(src) {
 }
 export function clearCloudPreviews() { signed.clear(); }
 export async function publishCloudDraft(revision, onProgress = () => {}) {
+  const { data: avatarReady, error: setupError } = await cloud.rpc('portfolio_avatar_ready');
+  if (setupError || !avatarReady) throw new Error('The Avatar studio needs its one-time database update before publishing. Run avatar-settings-migration.sql in Supabase. Your saved draft is safe.');
   const current = await loadCloudDraft();
   if (current.revision !== revision) throw new Error('The draft changed in another window. Reload before publishing.');
   const paths = new Set(), localFiles = new Set();

@@ -25,10 +25,12 @@
           <a class="work-link" href="#selected-work">Explore selected work <span>↘</span></a>
         </div>
         <div class="sculpture-wrap">
-          <div id="sculpture" tabindex="0" role="img" aria-label="Interactive chrome ribbon. Drag to turn, or use the arrow keys when focused. Home resets the view.">
-            <div class="sculpture-fallback" aria-hidden="true"></div>
+          <div id="sculpture" tabindex="0" role="group" aria-label="Floating design companion">
+            <div class="sculpture-fallback device-fallback" aria-hidden="true"><div class="device-fallback-screen"></div><div class="device-fallback-buttons"><i>···</i><i>⌣</i><i>〃</i><i>⌣</i></div><span>AN</span></div>
           </div>
-          <div class="sculpture-controls"><span class="interaction-hint">Move to explore · drag to turn</span><button id="motion-toggle" type="button" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button></div>
+          <div class="sculpture-controls"><span class="interaction-hint">Move to explore · tap a button</span><button id="motion-toggle" type="button" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button></div>
+          <div class="avatar-actions" role="group" aria-label="Companion expressions"></div>
+          <p id="avatar-message" class="sr-only" hidden></p>
           <span id="render-status" class="sr-only" role="status"></span>
         </div>
         <div class="hero-foot"><span>Mumbai, India ↗</span><span>Independent thinking. Intentional design.</span></div>
