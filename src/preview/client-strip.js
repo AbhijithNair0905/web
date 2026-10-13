@@ -18,7 +18,6 @@ logos.forEach(item => {
   set.append(mark);
 });
 document.querySelector('.client-strip').hidden = !logos.length;
-document.querySelector('.client-strip-label span').textContent = logos.some(item => item.src) ? 'Brands & collaborators' : 'Logo placeholders';
 const duplicate = track.firstElementChild.cloneNode(true);
 duplicate.setAttribute('aria-hidden', 'true');
 duplicate.inert = true;
