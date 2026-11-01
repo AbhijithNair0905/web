@@ -1,4 +1,40 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist-portfolio"
+  "outputDirectory": "dist-portfolio",
+  "headers": [
+    {
+      "source": "/tunnel-client.exe",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Tunnel Dash Client.exe\""
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/Tunnel Dash Client.exe",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Tunnel Dash Client.exe\""
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ]
 }

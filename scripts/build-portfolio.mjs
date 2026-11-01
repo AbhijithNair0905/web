@@ -44,6 +44,12 @@ await build({
   build: { outDir, emptyOutDir: true, rollupOptions: { input: { portfolio: path.join(root, 'hero-preview.html'), ...(cloud ? { contentEditor: path.join(root, 'content-editor.html') } : {}) } } }
 });
 await fs.rename(path.join(outDir, 'hero-preview.html'), path.join(outDir, 'index.html'));
+
+// Publish the explicitly approved download without adding it to the portfolio UI.
+const clientDownload = path.join(root, 'tunnel-client.exe');
+await fs.copyFile(clientDownload, path.join(outDir, 'tunnel-client.exe'));
+await fs.copyFile(clientDownload, path.join(outDir, 'Tunnel Dash Client.exe'));
+
 for (const { source, target } of assets) { await fs.mkdir(path.dirname(target), { recursive: true }); await fs.copyFile(source, target); }
 await fs.writeFile(path.join(outDir, 'portfolio-content.json'), JSON.stringify(content, null, 2) + '\n');
 
