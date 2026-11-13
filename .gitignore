@@ -1,1 +1,7 @@
 /node_modules
+/.content-backups/
+/dist/
+/dist-portfolio/
+.env
+.env.*
+!.env.example
